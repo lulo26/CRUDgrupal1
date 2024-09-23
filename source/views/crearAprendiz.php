@@ -22,7 +22,7 @@
     <div class="col mt-5 col-formulario">
       <!--FORMULARIO-->
       <h1>REGISTRO DE ESTUDIANTES</h1>
-<form class="formulario ">
+<form class="formulario">
   <div class="mb-3">
     <span>Numero de documento</span>
     <input type="number" class="form-control">
@@ -48,6 +48,15 @@
   </div>
 
   <div class="mb-3">
+    <span>Curso al que se piensa inscribir: </span>
+    <select class="form-select" aria-label="Default select example">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
     <span>Fecha de nacimiento</span>
     <input type="date" name="" id="" class="form-control">
   </div>
@@ -66,7 +75,7 @@
     <button type="submit" class="btn btn-primary boton">Enviar</button>
   </div>
 
-  <a href="#"><span>REVISAR TABLA</span></a>
+  <a href="/talleresphp/CRUDgrupal1/source/views/mostrarAprendiz.php"><span>REVISAR TABLA</span></a>
 
 </form>
 <!--FIN FORMULARIO-->
