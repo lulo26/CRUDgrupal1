@@ -46,7 +46,8 @@
           <?php if (!empty($users)): ?>
           <tbody>
               <!-- Mostrar Usuarios -->
-            <tr> <?php foreach($users as $user): ?> 
+              <?php foreach($users as $user): ?> 
+            <tr> 
               <td> <?php echo htmlspecialchars($user['numeroDoc']) ?>:</td>
 
               <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
@@ -61,8 +62,9 @@
 
               <td> <?php echo htmlspecialchars($user['correo']) ?></td>
               <td>  <i class="bi bi-pencil-square"></i></td>
-              <?php endforeach; ?>
+              
             </tr>
+            <?php endforeach; ?>
             <?php else: ?>
           </tbody>
           <!--mostrar mensaje cuando no hay usuarios-->

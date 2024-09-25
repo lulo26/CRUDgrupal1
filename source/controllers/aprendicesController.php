@@ -28,18 +28,30 @@ Class AprendicesController{
 
     public function manageForm(){
         if(isset($_POST['action'])) {
-            if($_POST['action'] == 'add'){
-                $id = $_POST['numeroDoc'];
-                $name = $_POST['nombre'];
-                $lastName = $_POST['apellido'];
-                $gender = $_POST['genero'];
-                $birthDate = $_POST['fecha_nac'];
-                $phoneNumb = $_POST['telefono'];
-                $email = $_POST['correo'];
+            if($_POST['action'] == 'agregar'){
+                $numeroDoc = $_POST['numeroDoc'];
+                $nombre = $_POST['nombre'];
+                $apellido = $_POST['apellido'];
+                $genero = $_POST['genero'];
+                $fecha_nac = $_POST['fecha_nac'];
+                $telefono = $_POST['telefono'];
+                $correo = $_POST['correo'];
 
-                $this->aprendicesModel->CreateUser($id, $name, $lastName, $gender, $birthDate, $phoneNumb, $email);
+                $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
+                header('Location: index.php');
+                exit();
 
-                header('Location: ./index.php');
+            } elseif ($_POST['action'] === 'editar'){
+                $numeroDoc = $_POST['numeroDoc'];
+                $nombre = $_POST['nombre'];
+                $apellido = $_POST['apellido'];
+                $genero = $_POST['genero'];
+                $fecha_nac = $_POST['fecha_nac'];
+                $telefono = $_POST['telefono'];
+                $correo = $_POST['correo'];
+
+                $this->aprendicesModel->EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc);
+                header('Location: index.php');
                 exit();
             }
         }

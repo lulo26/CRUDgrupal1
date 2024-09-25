@@ -28,9 +28,14 @@ class AprendicesModel{
         return mysqli_fetch_assoc($result);
     }
 
-    public function CreateUser($id, $name, $lastName, $gender, $birthDate, $phoneNumb, $email){
-        $query = "INSERT INTO aprendices VALUES (?,?,?,?,?,?,?, CURRENT_DATE())";
-        return $this->db->sendQuery($query, [$id, $name, $lastName, $gender, $birthDate, $phoneNumb, $email], "isssdss");
+    public function CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo){
+        $query = "INSERT INTO aprendices (numeroDoc, nombre, apellido, genero, fecha_nac, telefono, correo, fecha_creacion) VALUES (?,?,?,?,?,?,?, CURRENT_DATE())";
+        return $this->db->sendQuery($query, [$numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo], "issssss");
+    }
+
+    public function EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo){
+        $query = "UPDATE aprendices SET numeroDoc = ?, nombre = ?, apellido = ?, genero = ?, fecha_nac = ?, telefono = ?, correo = ?, fecha_creacion = ? WHERE numeroDoc = ?";
+        return $this->db->sendQuery($query,[$numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc], "issssssi");
     }
 
     public function __destruct()

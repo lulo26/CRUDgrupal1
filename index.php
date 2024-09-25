@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if(isset($_GET['action'])){
         switch($_GET['action']) {
+            case 'editar':
+                if (isset($_GET['numeroDoc'])){
+                    $controller->showForm($_GET['numeroDoc']);
+                }
+                break;
             default:
                 $controller->listUsers();
                 break;
