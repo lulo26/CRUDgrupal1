@@ -13,7 +13,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="/talleresphp/CRUDgrupal1/assets/tabla-estudiantes.css">
+    <link rel="stylesheet" href="/assets/tabla-estudiantes.css">
 
 </head>
 <body>
@@ -29,11 +29,12 @@
     <div class="row row-tabla-estudiantes">
       <div class="col-12">
         <h1>LISTA DE ESTUDIANTES</h1>
+
         <!--TABLA ESTUDIANTES-->
         <table class="table tabla-estudiantes">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Identificación</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Curso</th>
@@ -42,18 +43,31 @@
               <th scope="col">Editar</th>
             </tr>
           </thead>
-
+          <?php if (!empty($users)): ?>
           <tbody>
-            <tr>
-              <td> <b>1</b> </td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Matemáticas</td>
-              <td>bits8@gmail.com</td>
-              <td>312 609815</td>
-              <td><i class="bi bi-pencil-square"></i></td>
+              <!-- Mostrar Usuarios -->
+            <tr> <?php foreach($users as $user): ?> 
+              <td> <?php echo htmlspecialchars($user['numeroDoc']) ?>:</td>
+
+              <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
+
+              <td> <?php echo htmlspecialchars($user['apellido']) ?></td>
+
+              <td> <?php echo htmlspecialchars($user['genero']) ?></td>
+
+              <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
+
+              <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
+
+              <td> <?php echo htmlspecialchars($user['correo']) ?></td>
+              <td>  <i class="bi bi-pencil-square"></i></td>
+              <?php endforeach; ?>
             </tr>
+            <?php else: ?>
           </tbody>
+          <!--mostrar mensaje cuando no hay usuarios-->
+          <p>No hay usuarios registrados</p>
+          <?php endif; ?>
 
         </table>
         <!--FIN TABLA-->
