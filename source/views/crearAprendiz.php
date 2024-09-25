@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/talleresphp/CRUDgrupal1/assets/style.css">
 </head>
 
 <body>
@@ -17,7 +17,6 @@
 
 <div class="container">
   
-
 <div class="row row-form">
     <div class="col mt-5 col-formulario">
       <!--FORMULARIO-->
@@ -81,9 +80,12 @@
 
   <div class="mb-3 btn-enviar">
     <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?php echo isset($user) ? 'actualizar' : 'agregar'; ?></button>
+    <button type="submit" class="btn btn-primary boton">
+    Enviar
+    </button>
   </div>
 
-  <a href="/talleresphp/CRUDgrupal1/source/views/mostrarAprendiz.php"><span>REVISAR TABLA</span></a>
+  <a href="/talleresphp/CRUDgrupal1/source/views/home.php"><span>VOLVER AL INICIO</span></a>
 
 </form>
 <!--FIN FORMULARIO-->
