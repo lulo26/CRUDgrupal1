@@ -22,8 +22,7 @@
 
     <div class="row">
       <div class="col-12 btn-volver">
-        
-        <a href="/talleresphp/CRUDgrupal1/source/views/crearAprendiz.php">Volver</a>
+        <a href="/talleresphp/CRUDgrupal1/source/views/home.php">Volver</a>
       </div>
     </div>
 
@@ -77,7 +76,6 @@
       </div>
     </div>
 
-    <button data-bs-toggle="modal" data-bs-target="#modal-editar-estudiante">Abrir</button>
     <!--MODAL PARA EDITAR ESTUDIANTES-->
     <div class="row">
         <div class="col-12">

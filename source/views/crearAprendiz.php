@@ -76,7 +76,7 @@
     </button>
   </div>
 
-  <a href="/talleresphp/CRUDgrupal1/source/views/mostrarAprendiz.php"><span>REVISAR TABLA</span></a>
+  <a href="/talleresphp/CRUDgrupal1/source/views/home.php"><span>VOLVER AL INICIO</span></a>
 
 </form>
 <!--FIN FORMULARIO-->
