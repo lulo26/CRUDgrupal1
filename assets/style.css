@@ -1,5 +1,4 @@
 body{
-    min-width: 100vw;
     min-height: 100vh;
     background: linear-gradient(135deg, #f1f1f1d7 50%, #2d81e2 50%);
     backdrop-filter: blur(1.3px);
