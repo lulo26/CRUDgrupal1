@@ -13,7 +13,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="/talleresphp/CRUDgrupal1/assets/tabla-estudiantes.css">
+    <link rel="stylesheet" href="assets/tabla-estudiantes.css">
 
 </head>
 <body>
@@ -22,7 +22,7 @@
 
     <div class="row">
       <div class="col-12 btn-volver">
-        <a href="/talleresphp/CRUDgrupal1/source/views/home.php">Volver</a>
+        <a href="index.php?pagina=home">Volver</a>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
               <!-- Mostrar Usuarios -->
               <?php foreach($users as $user): ?> 
             <tr> 
-              <td> <?php echo htmlspecialchars($user['numeroDoc']) ?>:</td>
+              <td> <?php echo htmlspecialchars($user['numeroDoc']) ?></td>
 
               <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
 
@@ -65,9 +65,9 @@
               
             </tr>
             <?php endforeach; ?>
-            <?php else: ?>
           </tbody>
           <!--mostrar mensaje cuando no hay usuarios-->
+          <?php else: ?>
           <p>No hay usuarios registrados</p>
           <?php endif; ?>
 
@@ -133,10 +133,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 
   </div>
-  <script>
+<script>
     const myModal = document.getElementById('myModal')
 const myInput = document.getElementById('myInput')
 

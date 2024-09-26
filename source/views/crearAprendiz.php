@@ -8,8 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-
-    <link rel="stylesheet" href="/talleresphp/CRUDgrupal1/assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
@@ -22,7 +21,7 @@
       <!--FORMULARIO-->
       <h1><?php echo isset($user) ? 'EDITAR ESTUDIANTE' : 'REGISTRO DE ESTUDIANTES'; 
       ?></h1>
-<form action="../../index.php" method="post" class="formulario">
+<form action="index.php?pagina=registro&accion=registrar" method="post" class="formulario">
   <div class="mb-3">
     <span>Numero de documento</span>
     <input type="number" class="form-control" name="numeroDoc" id="numeroDoc" value="<?php echo isset($user) ?
@@ -79,13 +78,10 @@
   </div>
 
   <div class="mb-3 btn-enviar">
-    <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?php echo isset($user) ? 'actualizar' : 'agregar'; ?></button>
-    <button type="submit" class="btn btn-primary boton">
-    Enviar
-    </button>
+    <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?= isset($user) ? 'actualizar' : 'agregar'; ?></button>
   </div>
 
-  <a href="/talleresphp/CRUDgrupal1/source/views/home.php"><span>VOLVER AL INICIO</span></a>
+  <a href="index.php"><span>VOLVER AL INICIO</span></a>
 
 </form>
 <!--FIN FORMULARIO-->

@@ -7,7 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/talleresphp/CRUDgrupal1/assets/home.css">
+    <link rel="stylesheet" href="assets/home.css">
 
 </head>
 <body>
@@ -21,15 +21,15 @@
 
     <div class="row d-flex mt-4 links">
         <div class="col-6">
-           <button class="btn" id="btn-registro">
+           <a class="btn" id="btn-registro" href="index.php?pagina=registro">
             Registro
-           </button>
+        </a>
         </div>
 
         <div class="col-6 link">
-             <button class="btn" id="btn-tabla-registros">
+             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=estudiantes">
                 Todos los estudiantes registrados
-             </button>
+             </a>
         </div>
 
     </div>
@@ -40,11 +40,11 @@
         let btn_tabla=document.querySelector('#btn-tabla-registros')
 
         btn_registro.addEventListener('click',()=>{
-            window.open("/talleresphp/CRUDgrupal1/source/views/crearAprendiz.php",'_self');
+            window.open("../views/crearAprendiz.php",'_self');
         })
 
         btn_tabla.addEventListener('click',()=>{
-            window.open("/talleresphp/CRUDgrupal1/source/views/mostrarAprendiz.php",'_self');
+            window.open("../views/mostrarAprendiz.php",'_self');
         })
 
     </script>

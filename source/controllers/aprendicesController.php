@@ -26,6 +26,10 @@ Class AprendicesController{
         }
     }
 
+    public function goRegister(){
+        include './source/views/crearAprendiz.php';
+    }
+
     public function manageForm(){
         if(isset($_POST['action'])) {
             if($_POST['action'] == 'agregar'){
