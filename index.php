@@ -2,10 +2,9 @@
 require_once 'source/controllers/aprendicesController.php';
 require_once 'source/controllers/homeController.php';
  
-
-
 $controller = new AprendicesController();
 $homie = new HomeController();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->manageForm();
     if($_GET['action'] === 'registrar'){
