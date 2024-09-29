@@ -45,7 +45,7 @@ Class AprendicesController{
                 header('Location: index.php');
                 exit();
 
-            } elseif ($_POST['action'] === 'editar'){
+            } elseif ($_POST['action'] == 'editar'){
                 $numeroDoc = $_POST['numeroDoc'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];

@@ -61,7 +61,7 @@
               <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
 
               <td> <?php echo htmlspecialchars($user['correo']) ?></td>
-              <td>  <i class="bi bi-pencil-square"></i></td>
+              <td> <a href="index.php?pagina=editar"><i class="bi bi-pencil-square"></a></i></td>
               
             </tr>
             <?php endforeach; ?>

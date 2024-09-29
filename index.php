@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($_GET['action'] === 'registrar'){
         $controller->goRegister();
     }elseif ($_GET['action'] === 'editar') {
-        
+        $controller->manageForm();
     }
 }
 if (count($_GET) > 0) {
@@ -26,8 +26,11 @@ if (count($_GET) > 0) {
 
         case 'registro':
             $controller->goRegister();
-            
-            
+            break;
+
+        case 'editar':
+            $controller->goRegister();
+
             break;
         
         default: 
