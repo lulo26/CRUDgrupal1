@@ -37,18 +37,19 @@
               <th scope="col">Identificación</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">genero</th>
-              <th scope="col">fecha de nacimiento</th>
-              <th scope="col">Correo</th>
+              <th scope="col">Género</th>
+              <th scope="col">Curso</th>
               <th scope="col">Teléfono</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Fecha de Nacimiento</th>
               <th scope="col">Editar</th>
             </tr>
           </thead>
-          <?php if (!empty($users)): ?>
+          <?php if (!empty($usersWithCourse)): ?>
           <tbody>
               <!-- Mostrar Usuarios -->
-              <?php foreach($users as $user): ?> 
-            <tr> 
+          <?php foreach($usersWithCourse as $user): ?> 
+            <tr>
               <td> <?php echo htmlspecialchars($user['numeroDoc']) ?></td>
 
               <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
@@ -57,15 +58,18 @@
 
               <td> <?php echo htmlspecialchars($user['genero']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
+              <td>  <?php echo htmlspecialchars($user['curso_nombre']) ?> </td>
 
               <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['correo']) ?></td>
+              <td> <?php echo htmlspecialchars($user['correo']) ?></td>              
+
+              <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
+
               <td> <a href="index.php?pagina=editar&id=<?php echo $user['numeroDoc'];?>"><i class="bi bi-pencil-square"></a></i></td>
               
             </tr>
-            <?php endforeach; ?>
+          <?php endforeach; ?>
           </tbody>
           <!--mostrar mensaje cuando no hay usuarios-->
           <?php else: ?>
@@ -78,7 +82,7 @@
     </div>
 
     <!--MODAL PARA EDITAR ESTUDIANTES-->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12">
             <div class="modal fade" tabindex="-1" id="modal-editar-estudiante">
                 <div class="modal-dialog">
@@ -134,7 +138,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  -->
 
   </div>
 <script>
