@@ -18,9 +18,8 @@ Class AprendicesController{
 
     public function showForm($id = null){
         if ($id){
-            $user = 
-            $this->aprendicesModel->GetUserID($id);
-            include './source/views/mostrarAprendiz.php';
+            $user = $this->aprendicesModel->GetUserID($id);
+            include './source/views/crearAprendiz.php';
         } else {
             include './source/views/crearAprendiz.php';
         }
@@ -29,6 +28,7 @@ Class AprendicesController{
     public function goRegister(){
         include './source/views/crearAprendiz.php';
     }
+
 
     public function manageForm(){
         if(isset($_POST['action'])) {

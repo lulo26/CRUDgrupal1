@@ -21,7 +21,7 @@
       <!--FORMULARIO-->
       <h1><?php echo isset($user) ? 'EDITAR ESTUDIANTE' : 'REGISTRO DE ESTUDIANTES'; 
       ?></h1>
-<form action="index.php?pagina=registro&accion=registrar" method="post" class="formulario">
+<form action="<?php echo isset($user) ? 'index.php?pagina=registro&accion=editar' : 'index.php?pagina=registro&accion=registrar' ?>" method="post" class="formulario">
   <div class="mb-3">
     <span>Numero de documento</span>
     <input type="number" class="form-control" name="numeroDoc" id="numeroDoc" value="<?php echo isset($user) ?

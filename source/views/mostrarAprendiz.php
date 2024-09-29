@@ -37,7 +37,8 @@
               <th scope="col">Identificación</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">Curso</th>
+              <th scope="col">genero</th>
+              <th scope="col">fecha de nacimiento</th>
               <th scope="col">Correo</th>
               <th scope="col">Teléfono</th>
               <th scope="col">Editar</th>
@@ -61,7 +62,7 @@
               <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
 
               <td> <?php echo htmlspecialchars($user['correo']) ?></td>
-              <td> <a href="index.php?pagina=editar"><i class="bi bi-pencil-square"></a></i></td>
+              <td> <a href="index.php?pagina=editar&id=<?php echo $user['numeroDoc'];?>"><i class="bi bi-pencil-square"></a></i></td>
               
             </tr>
             <?php endforeach; ?>
