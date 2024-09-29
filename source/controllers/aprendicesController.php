@@ -53,10 +53,12 @@ Class AprendicesController{
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $genero = $_POST['genero'];
+                $curso = $_POST['curso'];
                 $fecha_nac = $_POST['fecha_nac'];
                 $telefono = $_POST['telefono'];
                 $correo = $_POST['correo'];
                 $this->aprendicesModel->EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc);
+                $this->aprendicesModel->EditCourses($numeroDoc,$curso, $numeroDoc);
                 header('Location: index.php');
                 exit();
             }

@@ -21,21 +21,12 @@
       <!--FORMULARIO-->
       <h1><?php echo isset($user) ? 'EDITAR ESTUDIANTE' : 'REGISTRO DE ESTUDIANTES'; 
       ?></h1>
-<<<<<<< HEAD
 <form action="<?php echo isset($user) ? 'index.php?pagina=registro&accion=editar' : 'index.php?pagina=registro&accion=registrar' ?>" method="post" class="formulario">
   <div class="mb-3">
     <span>Numero de documento</span>
     <input type="number" class="form-control" name="numeroDoc" id="numeroDoc" value="<?php echo isset($user) ?
     $user['numeroDoc'] : ''; ?>" required>
   </div>
-=======
-      <form action="index.php?pagina=registro&accion=registrar" method="post" class="formulario">
-        <div class="mb-3">
-          <span>Numero de documento</span>
-          <input type="number" class="form-control" name="numeroDoc" id="numeroDoc" value="<?php echo isset($user) ?
-          $user['numeroDoc'] : ''; ?>" required>
-        </div>
->>>>>>> 932b3858a6079f0e761876246fc872b1eda58eb4
 
         <div class="mb-3">
           <span>Nombre completo</span>

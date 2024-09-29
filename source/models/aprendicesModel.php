@@ -67,7 +67,7 @@ class AprendicesModel{
     //nombre del curso con el que se registro el usuario
     public function GetCourseUserID($id){
         $query = "SELECT cursos.nombre FROM aprendices_has_cursos
-        INNER JOIN cursos ON cursos.idcursos = aprendices_has_cursos.cursos_idcursos";
+        INNER JOIN cursos ON cursos.idcursos = aprendices_has_cursos.cursos_idcursos WHERE aprendices_numeroDoc = ?";
 
         $result = $this->db->sendQuery($query, [$id], 'i');
 
@@ -82,6 +82,11 @@ class AprendicesModel{
     public function EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo){
         $query = "UPDATE aprendices SET numeroDoc = ?, nombre = ?, apellido = ?, genero = ?, fecha_nac = ?, telefono = ?, correo = ? WHERE numeroDoc = ?";
         return $this->db->sendQuery($query,[$numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc], "issssssi");
+    }
+
+    public function EditCourses($id_aprendiz,$id_course){
+        $query = "UPDATE aprendices_has_cursos SET aprendices_numeroDoc = ?, cursos_idcursos = ? WHERE aprendices_numeroDoc = ?";
+        return $this->db->sendQuery($query, [$id_aprendiz,$id_course, $id_aprendiz], "iii");
     }
 
     public function __destruct()
