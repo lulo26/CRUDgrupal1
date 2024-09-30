@@ -34,8 +34,6 @@
                   </div>
 
                 <a href="index.php"><span>VOLVER AL INICIO</span></a>
-                
-
           </form>    
           <!--FIN FORMULARIO-->
           </div>
