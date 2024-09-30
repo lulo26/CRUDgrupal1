@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="">
+             <a class="btn" id="btn-tabla-registros" href="\talleresPHP\CRUDgrupal1\source\views/loginAdmin.php">
                 Inicio de Sesión (admin)
              </a>
         </div>

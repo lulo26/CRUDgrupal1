@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f1f1f1d7 50%, #4fa0fd 50%);
+    backdrop-filter: blur(1.3px);
+}
+
+.col-formulario{
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.418);
+}
+
+.row-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);;
+}
+
+.log-in{
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.formulario a{
+    color: black;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+.formulario a:hover{
+    color: #d32f2f;
+}
