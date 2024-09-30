@@ -10,8 +10,7 @@ Class AdminsController{
     }
 
     public function listAdmins(): void{
-        //$admin = $this->adminsModel->getAdmins();
-        //include '.source/views/mostrarAdmin.php';
+        $admins = $this->adminsModel->getAdmins();
 
         include 'source/views/mostrarAdmin.php';
     }

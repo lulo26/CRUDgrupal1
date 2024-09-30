@@ -16,7 +16,7 @@ class AdminsModel{
        $result = $this->db->sendQuery($query);
        $admins = [];
        while ($row = mysqli_fetch_assoc($result)){
-            $admins = $row;
+            $admins[] = $row;
        }
        return $admins;
     }
