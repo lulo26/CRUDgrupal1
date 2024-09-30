@@ -20,15 +20,27 @@
     </div>
 
     <div class="row d-flex mt-4 links">
-        <div class="col-6">
+        <div class="col-3">
            <a class="btn" id="btn-registro" href="index.php?pagina=registro">
             Registro
         </a>
         </div>
 
-        <div class="col-6 link">
+        <div class="col-3 link">
              <a class="btn" id="btn-tabla-registros" href="index.php?pagina=estudiantes">
                 Todos los estudiantes registrados
+             </a>
+        </div>
+
+        <div class="col-3 link">
+             <a class="btn" id="btn-tabla-registros" href="\talleresPHP\CRUDgrupal1\source\views/crearAdmin.php">
+                Registro (admin)
+             </a>
+        </div>
+
+        <div class="col-3 link">
+             <a class="btn" id="btn-tabla-registros" href="">
+                Inicio de Sesión (admin)
              </a>
         </div>
 
