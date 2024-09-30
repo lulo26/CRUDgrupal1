@@ -39,17 +39,13 @@
         </div>
 
         <div class="col-3 link">
-<<<<<<< HEAD
              <a class="btn" id="btn-tabla-registros" href="index.php?pagina=inicioadmin">
-=======
-             <a class="btn" id="btn-tabla-registros" href="\talleresPHP\CRUDgrupal1\source\views/loginAdmin.php">
->>>>>>> fb2303a65d733b5b6d4815208c286e1f7a1c79af
                 Inicio de Sesión (admin)
              </a>
         </div>
 
         <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="\talleresPHP\CRUDgrupal1\source\views/mostrarAdmin.php">
+             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=admins">
                 Tabla con admins registrados
              </a>
         </div>

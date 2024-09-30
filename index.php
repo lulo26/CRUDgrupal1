@@ -68,5 +68,3 @@ if (count($_GET) > 0) {
 }else{
     $homie->goHome();
 }
-
-?>

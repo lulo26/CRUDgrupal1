@@ -22,7 +22,7 @@
 
     <div class="row">
       <div class="col-12 btn-volver">
-        <a href="index.php?pagina=home">Volver</a>
+        <a href="index.php?pagina=home">Volverr</a>
       </div>
     </div>
 
@@ -81,7 +81,7 @@
       </div>
     </div>
 
-    <!--MODAL PARA EDITAR ESTUDIANTES-->
+    <!--MODAL PARA EDITAR ESTUDIANTES  -->
     <!-- <div class="row">
         <div class="col-12">
             <div class="modal fade" tabindex="-1" id="modal-editar-estudiante">

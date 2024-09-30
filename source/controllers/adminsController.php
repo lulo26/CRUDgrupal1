@@ -2,22 +2,23 @@
 
 require_once './source/models/adminsModel.php';
 
-class AdminsController{
+Class AdminsController{
     private $adminsModel;
 
     public function __construct(){
         $this->adminsModel = new AdminsModel();
     }
 
-    public function listAdmins(){
-        $admins = $this->adminsModel->getAdmins();
+    public function listAdmins(): void{
+        //$admin = $this->adminsModel->getAdmins();
+        //include '.source/views/mostrarAdmin.php';
 
-        include 'route';
+        include 'source/views/mostrarAdmin.php';
     }
 
     public function showAdmin($id){
         $admin = $this->adminsModel->getAdminID($id);
-        include 'route';
+        include_once '.source/views/mostrarAdmin.php';
     }
 
     public function manageAdmins(){

@@ -22,8 +22,6 @@ Class AprendicesController{
             $user =$this->aprendicesModel->GetUserID($id);
             $courseid =$this->aprendicesModel->GetCourseUserID($id);
             include './source/views/crearAprendiz.php';
-        } else {
-            include './source/views/crearAprendiz.php';
         }
     }
 

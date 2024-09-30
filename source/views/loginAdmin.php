@@ -36,7 +36,7 @@
                 <a href="index.php"><span>VOLVER AL INICIO</span></a>
                 
 
-          </form>    
+          </form>
           <!--FIN FORMULARIO-->
           </div>
         </div>

@@ -12,7 +12,7 @@ class AdminsModel{
     }
 
     public function getAdmins(){
-       $query = "SELECT * FROM admin";
+       $query = "SELECT * FROM `admin`";
        $result = $this->db->sendQuery($query);
        $admins = [];
        while ($row = mysqli_fetch_assoc($result)){
@@ -22,13 +22,13 @@ class AdminsModel{
     }
 
     public function getAdminID($id){
-        $query = "SELECT * FROM admin WHERE idadmin = ?";
+        $query = "SELECT * FROM `admin` WHERE idadmin = ?";
         $result = $this->db->sendQuery($query, [$id], 'i');
         return mysqli_fetch_assoc($result);
     }
 
     public function CreateAdmin($usuario, $pass, $mail, $nombre, $apellido){
-        $query = "INSERT INTO admin (usuario, password, correo, nombre, apellido) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO `admin` (usuario, password, correo, nombre, apellido) VALUES (?,?,?,?,?)";
         return $this->db->sendQuery($query, [$usuario, $pass, $mail, $nombre, $apellido], 'sssss');
     }
 
