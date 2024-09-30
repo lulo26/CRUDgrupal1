@@ -11,6 +11,18 @@ class AdminsModel{
         $this->db->connectDB();
     }
 
+    public function LogIn($user, $pass) {
+        $query = "SELECT * FROM `admin` WHERE usuario=? AND `password`=?";
+        $hashed_pass = md5($pass);  
+        $result = $this->db->sendQuery($query, [$user, $hashed_pass], 'ss');
+    
+        if (mysqli_fetch_assoc($result)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getAdmins(){
        $query = "SELECT * FROM `admin`";
        $result = $this->db->sendQuery($query);

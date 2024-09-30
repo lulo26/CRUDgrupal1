@@ -17,20 +17,20 @@
         <div class="col mt-5 col-formulario log-in">
           <h1>Inicio de sesión (Admin)</h1>
           <!--FORMULARIO-->
-          <form class="mt-3 formulario" action="" method="post">
+          <form class="mt-3 formulario" action="index.php?pagina=adminlogin&action=login" method="post">
+
                 <div class="mb-3">
                     <span>Usuario</span>
-                    <input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" value="<?php echo isset($user) ?
-                    htmlspecialchars($user['nombre']) : ''; ?>" required>
+                    <input type="text" class="form-control" name="nombre_admin" value="" required>
                 </div>
+
                 <div class="mb-3">
                     <span>Contraseña</span>
-                    <input type="password" class="form-control" name="apellido" id="apellido" value="<?php echo isset($user) ?
-                    htmlspecialchars($user['nombre']) : ''; ?>" required>
+                    <input type="password" class="form-control" name="pass" value="" required>
                 </div>
        
                 <div class="mb-3 btn-enviar">
-                    <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?= isset($user) ? 'actualizar' : 'agregar'; ?></button>
+                    <button type="submit" class="btn btn-primary boton" name="btn-login" value="">Iniciar Sesión</button>
                   </div>
 
                 <a href="index.php"><span>VOLVER AL INICIO</span></a>

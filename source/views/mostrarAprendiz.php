@@ -22,10 +22,6 @@
 
   <div class="container">
 
-    <div class="row">
-      <div class="col-12 btn-volver">
-        <a href="index.php?pagina=home">Volver</a>
-      </div>
     <div class="row d-flex">
         <div class="col-12 nav-bar d-flex justify-content-around">
             <nav class="navbar navbar-expand-lg">
@@ -38,13 +34,13 @@
                             <a href="index.php?pagina=estudiantes" class="nav-link active">Usuarios registrados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">Administradores</a>
+                            <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="" class="nav-link">Registro (admin)</a>
+                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">Log in</a>
+                            <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
                         </li>
                     </ul>
                 </div>

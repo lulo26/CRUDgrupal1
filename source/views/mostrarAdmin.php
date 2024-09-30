@@ -24,16 +24,16 @@
                                     <a href="index.php?pagina=registro" class="nav-link">Registro (usuarios)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">Usuarios registrados</a>
+                                    <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link active">Administradores</a>
+                                    <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="" class="nav-link">Registro (admin)</a>
+                                    <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">Log in</a>
+                                    <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
                                 </li>
                             </ul>
                         </div>
@@ -41,14 +41,9 @@
                 </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 btn-volver">
-                <a href="index.php?pagina=home">Volver</a>
-            </div>
-        </div>
 
         <div class="row">
-            <div class="col-12 ">
+            <div class="col-12 mt-4">
                 <h1 style="text-align:center;">Lista de administradores</h1>
                 <!--Tabla admins-->
                 <table class="table table-striped mt-3">
@@ -62,7 +57,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <?php foreach ($admins as $admin): ?>
+                        <?php foreach ($admins as $admin): ?>
                         <tr>
                         <th scope="col"><?php echo htmlspecialchars($admin['idadmin']) ?></th>
                             <td><?php echo htmlspecialchars($admin['nombre']) ?></td>

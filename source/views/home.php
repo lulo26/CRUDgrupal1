@@ -32,10 +32,10 @@
                             <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="index.php?pagina=adminregistro&action=adminregistrar" class="nav-link">Registro (admin)</a>
+                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">Log in</a>
+                            <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
                         </li>
                     </ul>
                 </div>
@@ -82,20 +82,6 @@
 
     </div> -->
 </div>
-
-    <script>
-        let btn_registro=document.querySelector('#btn-registro')
-        let btn_tabla=document.querySelector('#btn-tabla-registros')
-
-        btn_registro.addEventListener('click',()=>{
-            window.open("../views/crearAprendiz.php",'_self');
-        })
-
-        btn_tabla.addEventListener('click',()=>{
-            window.open("../views/mostrarAprendiz.php",'_self');
-        })
-
-    </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

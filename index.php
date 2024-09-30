@@ -24,6 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $controllerAdmin->goRegisterAdmin();
             break;
         
+        case 'login':
+            $controllerAdmin->manageAdmins();
+            break;
+        
         default:
             # code...
             break;
@@ -58,7 +62,7 @@ if (count($_GET) > 0) {
             $controllerAdmin->goRegisterAdmin();
             break;
 
-        case 'inicioadmin':
+        case 'adminlogin':
             $controllerAdmin->goLogIn();
             break;
 
