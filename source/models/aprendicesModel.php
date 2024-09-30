@@ -94,5 +94,3 @@ class AprendicesModel{
         $this->db->disconnect();
     }
 }
-
-?>

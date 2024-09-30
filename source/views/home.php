@@ -33,13 +33,13 @@
         </div>
 
         <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="\talleresPHP\CRUDgrupal1\source\views/crearAdmin.php">
+             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=adminregistro">
                 Registro (admin)
              </a>
         </div>
 
         <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="">
+             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=inicioadmin">
                 Inicio de Sesión (admin)
              </a>
         </div>

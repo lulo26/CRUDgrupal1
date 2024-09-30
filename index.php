@@ -1,18 +1,35 @@
 <?php
 require_once 'source/controllers/aprendicesController.php';
 require_once 'source/controllers/homeController.php';
+require_once 'source/controllers/adminsController.php';
  
 $controller = new AprendicesController();
+$controllerAdmin = new AdminsController();
 $homie = new HomeController();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->manageForm();
-    if($_GET['action'] === 'registrar'){
-        $controller->goRegister();
-    }elseif ($_GET['action'] === 'editar') {
-        $controller->showForm();
+    $controllerAdmin->manageAdmins();
+    switch ($_GET['action']) {
+        case 'registrar':
+            $controller->goRegister();
+            break;
+        
+        case 'editar':
+            $controller->showForm();
+            break;
+        
+        case 'adminregistrar':
+            $controllerAdmin->goRegisterAdmin();
+            break;
+        
+        default:
+            # code...
+            break;
     }
 }
+
 if (count($_GET) > 0) {
     switch ($_GET['pagina']) {
         case 'home':
@@ -31,35 +48,25 @@ if (count($_GET) > 0) {
             if (isset($_GET['id'])){
                 $controller->showForm($_GET['id']);
             }
-            
-
             break;
         
-        default: 
+        case 'admins':
+            $controllerAdmin->listAdmins();
+            break;
+
+        case 'adminregistro':
+            $controllerAdmin->goRegisterAdmin();
+            break;
+
+        case 'inicioadmin':
+            $controllerAdmin->goLogIn();
+            break;
+
+        default:
             break;
     }
 }else{
     $homie->goHome();
 }
-
-// POST method for the form
-/* if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $controller->manageForm();
-} elseif ($_SERVER['REQUEST_METHOD'] === 'GET'){
-    if(isset($_GET['action'])){
-        switch($_GET['action']) {
-            case 'editar':
-                if (isset($_GET['numeroDoc'])){
-                    $controller->showForm($_GET['numeroDoc']);
-                }
-                break;
-            default:
-                $controller->listUsers();
-                break;
-        }
-    } else{
-        $controller->listUsers();
-    }
-} */
 
 ?>

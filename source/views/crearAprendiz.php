@@ -18,9 +18,9 @@
     <div class="row row-form">
         <div class="col mt-5 col-formulario">
           <!--FORMULARIO-->
-          <h1><?php echo isset($user) ? 'EDITAR ESTUDIANTE' : 'REGISTRO DE ESTUDIANTES'; 
+          <h1><?php echo isset($user) ? 'EDITAR ESTUDIANTE' : 'REGISTRO DE ESTUDIANTES';
           ?></h1>
-          <form action="<?php echo isset($user) ? 'index.php?pagina=registro&accion=editar' : 'index.php?pagina=registro&accion=registrar' ?>" method="post" class="formulario">
+          <form action="<?php echo isset($user) ? 'index.php?pagina=registro&action=editar' : 'index.php?pagina=registro&action=registrar' ?>" method="post" class="formulario">
             
                 <div class="mb-3">
                   <span>Numero de documento</span>
