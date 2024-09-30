@@ -44,6 +44,12 @@
              </a>
         </div>
 
+        <div class="col-3 link">
+             <a class="btn" id="btn-tabla-registros" href="\talleresPHP\CRUDgrupal1\source\views/mostrarAdmin.php">
+                Tabla con admins registrados
+             </a>
+        </div>
+
     </div>
 </div>
 
