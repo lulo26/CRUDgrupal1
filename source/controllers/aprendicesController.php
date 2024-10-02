@@ -13,7 +13,6 @@ Class AprendicesController{
     public function listUsers(){
         $usersWithCourse = $this->aprendicesModel->GetUsersWithCourse();
         $courses = $this->aprendicesModel->GetCourses();
-
         include './source/views/mostrarAprendiz.php';
     }
 

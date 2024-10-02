@@ -12,7 +12,7 @@ class AdminsModel{
     }
 
     public function LogIn($user, $pass) {
-        $query = "SELECT * FROM `admin` WHERE usuario=? AND `password`=?";
+        $query = "SELECT * FROM admin WHERE usuario=? AND password=?";
         $hashed_pass = md5($pass);  
         $result = $this->db->sendQuery($query, [$user, $hashed_pass], 'ss');
     

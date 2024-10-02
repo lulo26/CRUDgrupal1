@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3 btn-enviar">
                     <button type="submit" class="btn btn-primary boton" name="action" value="adminregistrar">agregar</button>
-                  </div>
+                </div>
 
                 <a href="index.php"><span>VOLVER AL INICIO</span></a>
                 

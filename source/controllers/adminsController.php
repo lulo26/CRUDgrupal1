@@ -33,15 +33,21 @@ Class AdminsController{
                 exit();
 
             }elseif ($_POST['action'] === 'login') {
-                $nombre_usuario= $_POST['nombre_usuario'];
-                $pass= md5($_POST['pass']);
+                try 
+                {
+                    $nombre_admin= $_POST['nombre_admin'];
+                    
+                    $pass= md5($_POST['pass']);
 
-                if ($this->adminsModel->LogIn($nombre_usuario,$pass)) {
-                    header('location: index.php');
-                    exit();
-                }
-                else{
-                    echo "Mal ahí weon";
+                    if ($this->adminsModel->LogIn($nombre_admin,$pass)) {
+                        header('location: index.php');
+                        exit();
+                    }else{
+                        echo("No existes en el sistema");
+                    }
+                    
+                } catch (Exception $e) {
+                    throw new Exception("Error en el procedimiento", $e);
                 }
                 
             }

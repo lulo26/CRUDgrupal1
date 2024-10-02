@@ -11,6 +11,7 @@ $homie = new HomeController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->manageForm();
     $controllerAdmin->manageAdmins();
+
     switch ($_GET['action']) {
         case 'registrar':
             $controller->goRegister();
@@ -25,11 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
         
         case 'login':
-            $controllerAdmin->manageAdmins();
+            $homie->goHome();
             break;
         
         default:
-            # code...
             break;
     }
 }
