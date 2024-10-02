@@ -18,12 +18,11 @@ class AdminsModel{
         $result = $this->db->sendQuery($query, [$user, $pass], 'ss');
         $arreglo = mysqli_fetch_assoc($result);
 
-        if (count($arreglo)>0) {
+        if (isset($arreglo)) {
             return true;
         }else{
-            echo "No existes en el sistema";
+            echo '<script>alert("No existes en el sistema")</script>';
         }
-
         
     }
 

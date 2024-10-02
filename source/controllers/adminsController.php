@@ -43,8 +43,6 @@ Class AdminsController{
                     if ($this->adminsModel->LogIn($nombre_admin,$pass)) {
                         header('location: index.php');
                         exit();
-                    }else{
-                        echo("No existes en el sistema");
                     }
                     
                 } catch (Exception $e) {
