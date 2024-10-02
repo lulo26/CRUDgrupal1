@@ -14,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
     <link rel="stylesheet" href="assets/tabla-estudiantes.css">
+
     <link rel="stylesheet" href="assets/nav-bar.css">
 
 
@@ -21,6 +22,8 @@
 <body>
 
   <div class="container">
+
+      
 
     <div class="row d-flex">
         <div class="col-12 nav-bar d-flex justify-content-around">
@@ -48,59 +51,58 @@
         </div>
     </div>
 
-    <div class="row row-tabla-estudiantes">
-      <div class="col-12">
-        <h1>LISTA DE ESTUDIANTES</h1>
+    <!--TABLA ESTUDIANTES-->
+    <div class="row">
+            <div class="col-12 mt-4 col-tabla">
+                <h1 style="text-align:center;">Lista de aprendices</h1>
+                <!--Tabla admins-->
+                <table class="mt-3 table table-striped tabla-estudiante" id="tabla-estudiante" style="width: 50%;">
+                    <thead>
+                        <tr>
+                          <th scope="col">Identificación</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido</th>
+                          <th scope="col">Género</th>
+                          <th scope="col">Curso</th>
+                          <th scope="col">Teléfono</th>
+                          <th scope="col">Correo</th>
+                          <th scope="col">Fecha de Nacimiento</th>
+                          <th scope="col">Editar</th>
+                        </tr>
+                    </thead>
+                    <?php if (!empty($usersWithCourse)): ?>
+                    <tbody>
+                    <!-- Mostrar Usuarios -->
+                    <?php foreach($usersWithCourse as $user): ?> 
+                      <tr>
+                        <td> <?php echo htmlspecialchars($user['numeroDoc']) ?></td>
 
-        <!--TABLA ESTUDIANTES-->
-        <table class="table tabla-estudiantes">
-          <thead>
-            <tr>
-              <th scope="col">Identificación</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Género</th>
-              <th scope="col">Curso</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Fecha de Nacimiento</th>
-              <th scope="col">Editar</th>
-            </tr>
-          </thead>
-          <?php if (!empty($usersWithCourse)): ?>
-          <tbody>
-              <!-- Mostrar Usuarios -->
-          <?php foreach($usersWithCourse as $user): ?> 
-            <tr>
-              <td> <?php echo htmlspecialchars($user['numeroDoc']) ?></td>
+                        <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
+                        <td> <?php echo htmlspecialchars($user['apellido']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['apellido']) ?></td>
+                        <td> <?php echo htmlspecialchars($user['genero']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['genero']) ?></td>
+                        <td>  <?php echo htmlspecialchars($user['curso_nombre']) ?> </td>
 
-              <td>  <?php echo htmlspecialchars($user['curso_nombre']) ?> </td>
+                        <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
+                        <td> <?php echo htmlspecialchars($user['correo']) ?></td>              
 
-              <td> <?php echo htmlspecialchars($user['correo']) ?></td>              
+                        <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
 
-              <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
-
-              <td> <a href="index.php?pagina=editar&id=<?php echo $user['numeroDoc'];?>"><i class="bi bi-pencil-square"></a></i></td>
-              
-            </tr>
-          <?php endforeach; ?>
-          </tbody>
-          <!--mostrar mensaje cuando no hay usuarios-->
-          <?php else: ?>
-          <p>No hay usuarios registrados</p>
-          <?php endif; ?>
-
-        </table>
-        <!--FIN TABLA-->
-      </div>
+                        <td> <a href="index.php?pagina=editar&id=<?php echo $user['numeroDoc'];?>"><i class="bi bi-pencil-square"></a></i></td>
+                        
+                      </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                    <!--mostrar mensaje cuando no hay usuarios-->
+                    <?php else: ?>
+                    <p>No hay usuarios registrados</p>
+                    <?php endif; ?>
+                </table>
+                <!--Fin tabla admins-->
+            </div>
     </div>
 
     <!--MODAL PARA EDITAR ESTUDIANTES  -->

@@ -6,6 +6,7 @@
 }
 
 body{
+    overflow-x: hidden;
     min-height: 100vh;
     background: linear-gradient(135deg, #f1f1f1d7 50%, #2d81e2 50%);
     backdrop-filter: blur(2px);    
@@ -15,38 +16,32 @@ h1{
     text-align: center;
 }
 
-.row-tabla-estudiantes{
-    margin-top: 50px;
-}
-
-.tabla-estudiantes{
+.col-tabla{
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    border: 2px solid gray;
 }
 
-.btn-volver{
-    box-sizing: border-box;
-    cursor: pointer;
-    margin: 10px;
+#tabla-estudiante{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    text-align: center; 
+}
+
+.tabla-estudiante th, .tabla-estudiante td{
     padding: 10px;
-    text-align: center;
-    word-break: break-all;
-    width: 90px;
-    border-radius: 20px;
-    background-color: #2d81e2;
-    transition: background .3s;
-
 }
 
-.btn-volver a{
-    color: rgb(255, 255, 255);
-    text-decoration: none;
+@media (max-width:1020px){
+    .col-tabla{
+        overflow-x: auto;
+    }
 }
 
 
-.btn-volver:hover{
-    background-color: #1e497a;
-}
 
 
 
