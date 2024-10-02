@@ -12,15 +12,19 @@ class AdminsModel{
     }
 
     public function LogIn($user, $pass) {
-        $query = "SELECT * FROM admin WHERE usuario=? AND password=?";
-        $hashed_pass = md5($pass);  
-        $result = $this->db->sendQuery($query, [$user, $hashed_pass], 'ss');
-    
-        if (mysqli_fetch_assoc($result)) {
+
+        
+        $query = "SELECT usuario,password FROM admin WHERE usuario=? AND password=?";
+        $result = $this->db->sendQuery($query, [$user, $pass], 'ss');
+        $arreglo = mysqli_fetch_assoc($result);
+
+        if (count($arreglo)>0) {
             return true;
-        } else {
-            return false;
+        }else{
+            echo "No existes en el sistema";
         }
+
+        
     }
 
     public function getAdmins(){

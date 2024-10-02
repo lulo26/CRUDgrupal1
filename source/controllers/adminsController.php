@@ -39,6 +39,7 @@ Class AdminsController{
                     
                     $pass= md5($_POST['pass']);
 
+
                     if ($this->adminsModel->LogIn($nombre_admin,$pass)) {
                         header('location: index.php');
                         exit();

@@ -12,26 +12,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->manageForm();
     $controllerAdmin->manageAdmins();
 
-    switch ($_GET['action']) {
-        case 'registrar':
-            $controller->goRegister();
-            break;
+    if (isset($_GET['action'])) {
         
-        case 'editar':
-            $controller->showForm();
-            break;
-        
-        case 'adminregistrar':
-            $controllerAdmin->goRegisterAdmin();
-            break;
-        
-        case 'login':
-            $homie->goHome();
-            break;
-        
-        default:
-            break;
+        switch ($_GET['action']) {
+            case 'registrar':
+                $controller->goRegister();
+                break;
+            
+            case 'editar':
+                $controller->showForm();
+                break;
+            
+            case 'adminregistrar':
+                $controllerAdmin->goRegisterAdmin();
+                break;
+            
+            case 'login':
+                $controllerAdmin->goLogIn();
+                break;
+            
+            default:
+                break;
+        }
     }
+    
 }
 
 if (count($_GET) > 0) {
@@ -72,3 +76,5 @@ if (count($_GET) > 0) {
 }else{
     $homie->goHome();
 }
+
+?>
