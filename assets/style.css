@@ -8,6 +8,9 @@ h1{
     text-align: center;
 }
 
+.input-doc:read-only{
+    background-color: rgba(70, 70, 70, 0.397) !important;
+}
 
 .col-formulario{
     display: flex;

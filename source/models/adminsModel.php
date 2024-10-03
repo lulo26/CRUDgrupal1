@@ -46,17 +46,17 @@ class AdminsModel{
         return $this->db->sendQuery($query, [$usuario, $pass, $mail, $nombre, $apellido], 'sssss');
     }
 
-    public function EditAdmin($usuario, $pass, $mail, $nombre, $apellido,$id){
+    public function EditAdmin($pass, $mail, $nombre, $apellido,$id){
 
-        $query = "UPDATE `admin` SET usuario=?, password=?, correo=?, nombre=?, apellido=? WHERE idadmin=?";
-        return $this->db->sendQuery($query, [$usuario,$pass, $mail, $nombre, $apellido,$id], 'sssssi');
+        $query = "UPDATE `admin` SET password=?, correo=?, nombre=?, apellido=? WHERE idadmin=?";
+        return $this->db->sendQuery($query, [$usuario,$pass, $mail, $nombre, $apellido,$id], 'ssssi');
 
     }
 
-    public function EditAdminWithoutPass($usuario, $mail, $nombre, $apellido,$id){
+    public function EditAdminWithoutPass($mail, $nombre, $apellido,$id){
         
-        $query = "UPDATE `admin` SET usuario=?, correo=?, nombre=?, apellido=? WHERE idadmin=?";
-        return $this->db->sendQuery($query, [$usuario, $mail, $nombre, $apellido,$id], 'ssssi');
+        $query = "UPDATE `admin` SET correo=?, nombre=?, apellido=? WHERE idadmin=?";
+        return $this->db->sendQuery($query, [$mail, $nombre, $apellido,$id], 'sssi');
         
     }
 

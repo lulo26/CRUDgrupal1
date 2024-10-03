@@ -23,11 +23,11 @@
           ?></h1>
           <form action="<?php echo isset($user) ? 'index.php?pagina=registro&action=editar' : 'index.php?pagina=registro&action=registrar' ?>" method="post" class="formulario">
             
-                <div class="mb-3">
-                  <span>Numero de documento</span>
-                  <input type="number" class="form-control" name="numeroDoc" id="numeroDoc" value="<?php echo isset($user) ?
-                  $user['numeroDoc'] : ''; ?>" required>
-                </div>
+                      <div class="mb-3">
+                        <span>Numero de documento</span>
+                        <input type="number" <?php echo isset($user) ? 'readonly' : ''; ?> class="form-control input-doc" name="numeroDoc" id="numeroDoc" value="<?php echo isset($user) ?
+                        $user['numeroDoc'] : ''; ?>" required>
+                      </div>
 
                       <div class="mb-3">
                         <span>Nombre completo</span>
@@ -74,7 +74,7 @@
 
                       <div class="mb-3">
                         <span>Número de teléfono</span>
-                        <input type="text" class="form-control" name="telefono" id="telefono" value="<?php echo isset($user) ?
+                        <input type="number" class="form-control" name="telefono" id="telefono" value="<?php echo isset($user) ?
                         htmlspecialchars($user['telefono']) : ''; ?>">
                       </div>
 
@@ -88,7 +88,7 @@
                         <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?= isset($user) ? 'actualizar' : 'agregar'; ?></button>
                       </div>
 
-                      <a href="index.php"><span>VOLVER AL INICIO</span></a>
+                      <a href="index.php?pagina=estudiantes"><span>VOLVER A LA TABLA</span></a>
 
                     </form>
               <!--FIN FORMULARIO-->

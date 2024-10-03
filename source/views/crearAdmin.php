@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                     <span>Nombre de usuario</span>
-                    <input type="text" class="form-control" name="usuario" id="usuario" value="<?php echo isset($admin) ?
+                    <input type="text" <?php echo isset($admin) ? 'readonly disabled' : '';?> class="form-control" name="usuario" id="usuario" value="<?php echo isset($admin) ?
                     htmlspecialchars($admin['usuario']) : ''; ?>"   required>
                 </div>
                 <div class="mb-3">
@@ -49,6 +49,8 @@
                 <div class="mb-3 btn-enviar">
                     <button type="submit" class="btn btn-primary boton" name="<?php echo isset($admin) ? 'action' : 'action';?>" value="<?php echo isset($admin) ? 'admineditar' : 'adminregistrar'; ?>"><?= isset($admin) ? 'Actualizar' : 'Agregar'; ?></button>
                 </div>
+
+                <a href="index.php?pagina=admins"><span>VOLVER A LA TABLA</span></a>
                 
           </form>
           <!--FIN FORMULARIO-->
