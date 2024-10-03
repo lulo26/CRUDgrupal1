@@ -40,10 +40,18 @@ Class AprendicesController{
                 $fecha_nac = $_POST['fecha_nac'];
                 $telefono = $_POST['telefono'];
                 $correo = $_POST['correo'];
-                $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
-                $this->aprendicesModel->CreateCourses($numeroDoc,$curso);
-                header('Location: index.php?pagina=estudiantes');
-                exit();
+
+                $correo_repetido= $this->aprendicesModel->GetEmailUser($correo);
+
+                if ($correo_repetido==true) {
+                    echo '<script>alert("Ese correo ya existe")</script>';
+                }else{
+                    $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
+                    $this->aprendicesModel->CreateCourses($numeroDoc,$curso);
+                    header('Location: index.php?pagina=estudiantes');
+                    exit();
+                }
+                
 
             } elseif ($_POST['action'] == 'editar'){
                 $numeroDoc = $_POST['numeroDoc'];

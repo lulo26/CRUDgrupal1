@@ -74,6 +74,19 @@ class AprendicesModel{
         return mysqli_fetch_assoc($result);
     }
 
+    public function GetEmailUser($email){
+        $query="SELECT * FROM aprendices WHERE correo=?";
+        $result = $this->db->sendQuery($query, [$email], 's');
+        $value = mysqli_fetch_assoc($result);
+
+        if (isset($value)) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     public function CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo){
         $query = "INSERT INTO aprendices (numeroDoc, nombre, apellido, genero, fecha_nac, telefono, correo, fecha_creacion) VALUES (?,?,?,?,?,?,?, CURRENT_DATE())";
         return $this->db->sendQuery($query, [$numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo], "issssss");
