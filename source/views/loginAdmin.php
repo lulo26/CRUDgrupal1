@@ -33,7 +33,7 @@
                     <button type="submit" class="btn btn-primary boton" name="action" value="login">Iniciar Sesión</button>
                   </div>
 
-                <a href="index.php"><span>VOLVER AL INICIO</span></a>
+                <a href="index.php?pagina=adminregistro"><span>¿No tienes cuenta aún? Registrate aquí!</span></a>
                 
           </form>
           <!--FIN FORMULARIO-->

@@ -42,7 +42,7 @@ Class AprendicesController{
                 $correo = $_POST['correo'];
                 $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
                 $this->aprendicesModel->CreateCourses($numeroDoc,$curso);
-                header('Location: index.php');
+                header('Location: index.php?pagina=estudiantes');
                 exit();
 
             } elseif ($_POST['action'] == 'editar'){
@@ -56,7 +56,7 @@ Class AprendicesController{
                 $correo = $_POST['correo'];
                 $this->aprendicesModel->EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc);
                 $this->aprendicesModel->EditCourses($numeroDoc,$curso, $numeroDoc);
-                header('Location: index.php');
+                header('Location: index.php?pagina=estudiantes');
                 exit();
             }
         }

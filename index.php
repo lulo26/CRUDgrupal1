@@ -14,24 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
-            case 'registrar':
-                $controller->goRegister();
-                break;
-            
+           
             case 'editar':
                 $controller->showForm();
-                break;
-            
-            case 'adminregistrar':
-                $controllerAdmin->goRegisterAdmin();
                 break;
 
             case 'admineditar':
                 $controllerAdmin->showAdmin();
-                break;
-            
-            case 'login':
-                $controllerAdmin->goLogIn();
                 break;
             
             default:
@@ -84,7 +73,7 @@ if (count($_GET) > 0) {
             break;
     }
 }else{
-    $homie->goHome();
+    $controllerAdmin->goLogIn();
 }
 
 ?>

@@ -30,7 +30,7 @@ Class AdminsController{
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $this->adminsModel->CreateAdmin($usuario, $pass, $mail, $nombre, $apellido);
-                header('location: index.php');
+                header('location: index.php?pagina=home');
                 exit();
 
             }elseif ($_POST['action'] === 'admineditar') {
@@ -47,7 +47,7 @@ Class AdminsController{
                     $this->adminsModel->EditAdminWithoutPass($usuario, $mail, $nombre, $apellido,$idadmin);
                 }
 
-                header('location: index.php');
+                header('location: index.php?pagina=admins');
                 exit();
 
             }elseif ($_POST['action'] === 'login') {
@@ -56,7 +56,7 @@ Class AdminsController{
                     $nombre_admin= $_POST['nombre_admin'];
                     $pass= md5($_POST['pass']);
                     if ($this->adminsModel->LogIn($nombre_admin,$pass)) {
-                        header('location: index.php');
+                        header('location: index.php?pagina=home');
                         exit();
                     }
                     
