@@ -21,6 +21,7 @@
 
           <input type="text" hidden name="idadmin" value="<?php echo isset($admin) ?
           htmlspecialchars($admin['idadmin']) : ''; ?>">
+
                 <div class="mb-3">
                     <span>Nombre(s)</span>
                     <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo isset($admin) ?
@@ -43,8 +44,7 @@
                 </div>
                 <div class="mb-3">
                     <span>Contraseña</span>
-                    <input type="password" class="form-control" name="pass" id="pass" value="<?php echo isset($admin) ?
-                    htmlspecialchars($admin['password']) : ''; ?>"   required>
+                    <input type="password" class="form-control" name="pass" id="pass">
                 </div>
                 <div class="mb-3 btn-enviar">
                     <button type="submit" class="btn btn-primary boton" name="<?php echo isset($admin) ? 'action' : 'action';?>" value="<?php echo isset($admin) ? 'admineditar' : 'adminregistrar'; ?>"><?= isset($admin) ? 'Actualizar' : 'Agregar'; ?></button>

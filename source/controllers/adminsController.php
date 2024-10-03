@@ -35,13 +35,18 @@ Class AdminsController{
 
             }elseif ($_POST['action'] === 'admineditar') {
                 $usuario = $_POST['usuario'];
-                $pass = md5($_POST['pass']);
+                $pass = $_POST['pass'];
                 $mail = $_POST['mail'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $idadmin =$_POST['idadmin'];
-                
-                $this->adminsModel->EditAdmin($usuario, $pass, $mail, $nombre, $apellido,$idadmin);
+
+                if (strlen(trim($pass))>0) {
+                    $this->adminsModel->EditAdmin($usuario, md5($pass), $mail, $nombre, $apellido,$idadmin);
+                } else {
+                    $this->adminsModel->EditAdminWithoutPass($usuario, $mail, $nombre, $apellido,$idadmin);
+                }
+
                 header('location: index.php');
                 exit();
 
@@ -73,3 +78,4 @@ Class AdminsController{
     }
 }
 
+?>

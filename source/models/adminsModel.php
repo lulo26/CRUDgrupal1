@@ -35,19 +35,6 @@ class AdminsModel{
        return $admins;
     }
 
-    public function SelectIDAdmin($correo){
-        $query = "SELECT idadmin FROM `admin` WHERE correo = ?";
-        $result = $this->db->sendQuery($query, [$correo], 's');
-
-        if ($result) {
-            var_dump(mysqli_fetch_assoc($result)); // Verifica qué datos está trayendo la consulta
-        } else {
-            echo "Error en la consulta: " . $this->db->error;
-        }
-        
-        return mysqli_fetch_assoc($result);
-    }
-
     public function getAdminID($id){
         $query = "SELECT * FROM `admin` WHERE idadmin = ?";
         $result = $this->db->sendQuery($query, [$id], 'i');
@@ -60,8 +47,17 @@ class AdminsModel{
     }
 
     public function EditAdmin($usuario, $pass, $mail, $nombre, $apellido,$id){
+
         $query = "UPDATE `admin` SET usuario=?, password=?, correo=?, nombre=?, apellido=? WHERE idadmin=?";
-        return $this->db->sendQuery($query, [$usuario, $pass, $mail, $nombre, $apellido,$id], 'sssssi');
+        return $this->db->sendQuery($query, [$usuario,$pass, $mail, $nombre, $apellido,$id], 'sssssi');
+
+    }
+
+    public function EditAdminWithoutPass($usuario, $mail, $nombre, $apellido,$id){
+        
+        $query = "UPDATE `admin` SET usuario=?, correo=?, nombre=?, apellido=? WHERE idadmin=?";
+        return $this->db->sendQuery($query, [$usuario, $mail, $nombre, $apellido,$id], 'ssssi');
+        
     }
 
     public function __destruct()
