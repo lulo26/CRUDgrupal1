@@ -39,7 +39,8 @@ Class AdminsController{
                 $mail = $_POST['mail'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
-                $idadmin = $this->adminsModel->SelectIDAdmin($correo);
+                $idadmin =$_POST['idadmin'];
+                
                 $this->adminsModel->EditAdmin($usuario, $pass, $mail, $nombre, $apellido,$idadmin);
                 header('location: index.php');
                 exit();

@@ -19,6 +19,8 @@
           <!--FORMULARIO-->
           <form class="formulario" action="<?php echo isset($admin) ? 'index.php?pagina=editaradmin&action=admineditar' : 'index.php?pagina=adminregistro&action=adminregistrar' ?>" method="post">
 
+          <input type="text" hidden name="idadmin" value="<?php echo isset($admin) ?
+          htmlspecialchars($admin['idadmin']) : ''; ?>">
                 <div class="mb-3">
                     <span>Nombre(s)</span>
                     <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo isset($admin) ?
