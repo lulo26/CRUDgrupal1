@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controllerAdmin->manageAdmins();
 
     if (isset($_GET['action'])) {
-        
         switch ($_GET['action']) {
             case 'registrar':
                 $controller->goRegister();
@@ -26,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'adminregistrar':
                 $controllerAdmin->goRegisterAdmin();
                 break;
+
+            case 'admineditar':
+                $controllerAdmin->showAdmin();
+                break;
             
             case 'login':
                 $controllerAdmin->goLogIn();
@@ -37,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
 }
+
 
 if (count($_GET) > 0) {
     switch ($_GET['pagina']) {
@@ -64,6 +68,12 @@ if (count($_GET) > 0) {
 
         case 'adminregistro':
             $controllerAdmin->goRegisterAdmin();
+            break;
+
+        case 'editaradmin':
+            if (isset($_GET['id'])) {
+                $controllerAdmin->showAdmin($_GET['id']);
+            }
             break;
 
         case 'adminlogin':

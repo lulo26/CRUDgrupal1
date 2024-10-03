@@ -17,7 +17,7 @@
         <div class="col mt-5 col-formulario log-in">
           <h1>Inicio de sesión (Admin)</h1>
           <!--FORMULARIO-->
-          <form class="mt-3 formulario" action="<?php 'index.php?pagina=adminlogin&action=login' ?>" method="post">
+          <form class="mt-3 formulario" action="index.php?pagina=adminlogin&action=login" method="post">
 
                 <div class="mb-3">
                     <span>Usuario</span>
@@ -35,7 +35,6 @@
 
                 <a href="index.php"><span>VOLVER AL INICIO</span></a>
                 
-
           </form>
           <!--FIN FORMULARIO-->
           </div>

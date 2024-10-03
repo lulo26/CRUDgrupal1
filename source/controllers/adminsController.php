@@ -14,9 +14,11 @@ Class AdminsController{
         include 'source/views/mostrarAdmin.php';
     }
 
-    public function showAdmin($id){
-        $admin = $this->adminsModel->getAdminID($id);
-        include_once '.source/views/mostrarAdmin.php';
+    public function showAdmin($id=null){
+        if ($id) {
+            $admin = $this->adminsModel->getAdminID($id);
+            include_once 'source/views/crearAdmin.php';
+        }
     }
 
     public function manageAdmins(){
@@ -27,8 +29,18 @@ Class AdminsController{
                 $mail = $_POST['mail'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
-        
                 $this->adminsModel->CreateAdmin($usuario, $pass, $mail, $nombre, $apellido);
+                header('location: index.php');
+                exit();
+
+            }elseif ($_POST['action'] === 'admineditar') {
+                $usuario = $_POST['usuario'];
+                $pass = md5($_POST['pass']);
+                $mail = $_POST['mail'];
+                $nombre = $_POST['nombre'];
+                $apellido = $_POST['apellido'];
+                $idadmin = $this->adminsModel->SelectIDAdmin($correo);
+                $this->adminsModel->EditAdmin($usuario, $pass, $mail, $nombre, $apellido,$idadmin);
                 header('location: index.php');
                 exit();
 
@@ -36,10 +48,7 @@ Class AdminsController{
                 try 
                 {
                     $nombre_admin= $_POST['nombre_admin'];
-                    
                     $pass= md5($_POST['pass']);
-
-
                     if ($this->adminsModel->LogIn($nombre_admin,$pass)) {
                         header('location: index.php');
                         exit();
@@ -50,6 +59,7 @@ Class AdminsController{
                 }
                 
             }
+            
         }
     }
 
