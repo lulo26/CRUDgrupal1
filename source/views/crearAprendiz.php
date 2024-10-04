@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +89,7 @@
                         <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?= isset($user) ? 'actualizar' : 'agregar'; ?></button>
                       </div>
 
-                      <a href="index.php?pagina=estudiantes"><span>VOLVER A LA TABLA</span></a>
+                      <a href="index.php?pagina=estudiantes"><span>TABLA APRENDICES</span></a>
 
                     </form>
               <!--FIN FORMULARIO-->

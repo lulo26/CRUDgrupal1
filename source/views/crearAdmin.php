@@ -49,8 +49,6 @@
                 <div class="mb-3 btn-enviar">
                     <button type="submit" class="btn btn-primary boton" name="<?php echo isset($admin) ? 'action' : 'action';?>" value="<?php echo isset($admin) ? 'admineditar' : 'adminregistrar'; ?>"><?= isset($admin) ? 'Actualizar' : 'Agregar'; ?></button>
                 </div>
-
-                <a href="index.php?pagina=admins"><span>VOLVER A LA TABLA</span></a>
                 
           </form>
           <!--FIN FORMULARIO-->

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
+    $nombreuser = $_SESSION['user'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +31,18 @@
 
       
 
-    <div class="row d-flex">
+  <div class="row d-flex">
         <div class="col-12 nav-bar d-flex justify-content-around">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="index.php?pagina=home" class='nav-link'>
+                                <?php  
+                                echo htmlspecialchars($nombreuser);
+                                ?>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=registro" class="nav-link">Registro (usuarios)</a>
                         </li>
@@ -40,16 +53,22 @@
                             <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
+                            <a <?php if ($_SESSION['acceso']==true) echo 'hidden'; ?> href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
+                            <a href="
+                            <?php echo $_SESSION['acceso']== true ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; ?>" class="nav-link">
+                            <?php
+                            echo $_SESSION['acceso']==true ? 'Log Out' : 'Log In';
+                            ?>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </div>
+
 
     <!--TABLA ESTUDIANTES-->
     <div class="row">

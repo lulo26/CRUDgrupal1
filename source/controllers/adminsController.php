@@ -2,11 +2,14 @@
 
 require_once './source/models/adminsModel.php';
 
+
 Class AdminsController{
     private $adminsModel;
+    private $user;
 
     public function __construct(){
         $this->adminsModel = new AdminsModel();
+
     }
 
     public function listAdmins(): void{
@@ -29,9 +32,27 @@ Class AdminsController{
                 $mail = $_POST['mail'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
-                $this->adminsModel->CreateAdmin($usuario, $pass, $mail, $nombre, $apellido);
-                header('location: index.php?pagina=home');
-                exit();
+                
+                $user_repeated = $this->adminsModel->GetUserRepeated($usuario);
+                $email_repeated = $this->adminsModel->GetEmailRepeated($mail);
+
+                if ($user_repeated==true) {
+                    echo '<script>alert("Ese usuario ya existe")</script>';
+
+                }elseif ($email_repeated==true) {
+                    echo '<script>alert("Ese correo ya existe")</script>';
+
+                }else {
+                    $this->adminsModel->CreateAdmin($usuario, $pass, $mail, $nombre, $apellido);
+
+                    session_start();
+                    header('location: index.php?pagina=home');
+
+                    $_SESSION['user']=$usuario; 
+                    $_SESSION['acceso']=true;
+
+                    exit();
+                }
 
             }elseif ($_POST['action'] === 'admineditar') {
                 $pass = $_POST['pass'];
@@ -45,24 +66,9 @@ Class AdminsController{
                 } else {
                     $this->adminsModel->EditAdminWithoutPass($mail, $nombre, $apellido,$idadmin);
                 }
-
+                
                 header('location: index.php?pagina=admins');
                 exit();
-
-            }elseif ($_POST['action'] === 'login') {
-                try 
-                {
-                    $nombre_admin= $_POST['nombre_admin'];
-                    $pass= md5($_POST['pass']);
-                    if ($this->adminsModel->LogIn($nombre_admin,$pass)) {
-                        header('location: index.php?pagina=home');
-                        exit();
-                    }
-                    
-                } catch (Exception $e) {
-                    throw new Exception("Error en el procedimiento", $e);
-                }
-                
             }
             
         }
