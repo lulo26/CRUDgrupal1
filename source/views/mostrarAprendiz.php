@@ -104,6 +104,9 @@
                 <!--Fin tabla admins-->
             </div>
     </div>
+    <form action="index.php?pagina=home&action=reporteAprendices" method="post">
+            <button type="submit" class="btn btn-primary boton mt-3">descargar reporte</button>
+            </form>
 
     <!--MODAL PARA EDITAR ESTUDIANTES  -->
     <!-- <div class="row">
