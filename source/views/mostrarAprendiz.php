@@ -29,9 +29,7 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
 
   <div class="container">
 
-      
-
-  <div class="row d-flex">
+    <div class="row d-flex">
         <div class="col-12 nav-bar d-flex justify-content-around">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
@@ -123,68 +121,17 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
                 <!--Fin tabla admins-->
             </div>
     </div>
-    <form action="index.php?pagina=home&action=reporteAprendices" method="post">
-            <button type="submit" class="btn btn-primary boton mt-3">descargar reporte</button>
-            </form>
 
-    <!--MODAL PARA EDITAR ESTUDIANTES  -->
-    <!-- <div class="row">
-        <div class="col-12">
-            <div class="modal fade" tabindex="-1" id="modal-editar-estudiante">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Editar estudiante</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <form class="formulario">
-                      <div class="mb-3">
-                        <span>Numero de documento</span>
-                        <input type="number" class="form-control">
-                      </div>
+    <div class="row">
+      <div class="col-12">
+          <form action="index.php?pagina=home&action=reporteAprendices" method="post">
+                <button type="submit" class="btn btn-primary boton mt-3">Descargar reporte</button>
+          </form>
+      </div>
+    </div>
+    
 
-                      <div class="mb-3">
-                        <span>Nombre completo</span>
-                        <input type="text" class="form-control" >
-                      </div>
 
-                      <div class="mb-3">
-                        <span>Apellido(s)</span>
-                        <input type="text" class="form-control" >
-                      </div>
-        
-                      <div class="mb-3">
-                        <span>Curso</span>
-                        <select class="form-select" aria-label="Default select example">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                        </select>
-                      </div>
-
-                      <div class="mb-3">
-                        <span>Correo electrónico</span>
-                        <input type="email" class="form-control">
-                      </div>
-
-                      <div class="mb-3">
-                        <span>Número de teléfono</span>
-                        <input type="text" class="form-control">
-                      </div>
-
-                    </form>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>  -->
 
   </div>
 

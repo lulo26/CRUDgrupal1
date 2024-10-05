@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+    header("location: index.php?pagina=home");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
