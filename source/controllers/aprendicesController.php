@@ -16,12 +16,10 @@ Class AprendicesController{
         include './source/views/mostrarAprendiz.php';
     }
 
-    public function showForm($id = null){
-        if ($id){
+    public function showForm($id){
             $user =$this->aprendicesModel->GetUserID($id);
             $courseid =$this->aprendicesModel->GetCourseUserID($id);
             include './source/views/crearAprendiz.php';
-        }
     }
 
     public function goRegister(){

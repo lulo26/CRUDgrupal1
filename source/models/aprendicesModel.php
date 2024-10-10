@@ -28,17 +28,6 @@ class AprendicesModel{
         return $users;
     }
 
-    /*  public function GetUsers(){
-        $query = "SELECT * FROM aprendices";
-        $result = $this->db->sendQuery($query);
-
-        $users = [];
-        while ($row = mysqli_fetch_assoc($result)){
-            $users[] = $row;
-        }
-        return $users;
-    } */
-
     public function GetUserID($id){
         $query = "SELECT * FROM aprendices WHERE numeroDoc = ?";
         $result = $this->db->sendQuery($query, [$id], 'i');

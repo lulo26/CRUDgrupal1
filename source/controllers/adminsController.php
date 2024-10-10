@@ -9,7 +9,6 @@ Class AdminsController{
 
     public function __construct(){
         $this->adminsModel = new AdminsModel();
-
     }
 
     public function listAdmins(): void{
@@ -17,11 +16,10 @@ Class AdminsController{
         include 'source/views/mostrarAdmin.php';
     }
 
-    public function showAdmin($id=null){
-        if ($id) {
-            $admin = $this->adminsModel->getAdminID($id);
-            include_once 'source/views/crearAdmin.php';
-        }
+    public function showAdmin($id){
+        $admin = $this->adminsModel->getAdminID($id);
+        
+        include_once 'source/views/crearAdmin.php';
     }
 
     public function manageAdmins(){
