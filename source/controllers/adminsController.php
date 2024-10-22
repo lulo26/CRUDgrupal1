@@ -31,6 +31,35 @@ Class AdminsController{
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
 
+                //esto es una mierda de solucion pero sirve
+                $user_admin = $_POST['user_admin'];
+                
+                $user_repeated = $this->adminsModel->GetUserRepeated($usuario);
+                $email_repeated = $this->adminsModel->GetEmailRepeated($mail);
+
+                if ($user_repeated==true) {
+                    echo '<script>alert("Ese usuario ya existe")</script>';
+
+                }elseif ($email_repeated==true) {
+                    echo '<script>alert("Ese correo ya existe")</script>';
+
+                }else {
+                    $this->adminsModel->CreateAdmin($usuario, $pass, $mail, $nombre, $apellido);
+
+                    if (!empty($user_admin)) {
+                        header('location: index.php?pagina=admins');
+                        
+                    }else {
+                        session_start();
+                        header('location: index.php?pagina=home');
+                        $_SESSION['user']=$usuario; 
+                        $_SESSION['acceso']=true;
+                    }
+                    
+
+                    exit();
+                }
+
             }elseif ($_POST['action'] === 'admineditar') {
                 $pass = $_POST['pass'];
                 $mail = $_POST['mail'];

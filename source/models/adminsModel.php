@@ -11,6 +11,7 @@ class AdminsModel{
         $this->db->connectDB();
     }
 
+
     public function LogIn($user, $pass) {
 
         $query = "SELECT usuario,password FROM admin WHERE usuario=? AND password=?";
@@ -18,9 +19,41 @@ class AdminsModel{
         $arreglo = mysqli_fetch_assoc($result);
 
         if (isset($arreglo)) {
-            return true;
+            return $arreglo;
         }else{
             echo '<script>alert("No existes en el sistema")</script>';
+        }
+        
+    }
+
+    public function GetUserRepeated($user) {
+
+        $query = "SELECT * FROM admin WHERE usuario=?";
+
+        $result = $this->db->sendQuery($query, [$user], 's');
+
+        $arreglo = mysqli_fetch_assoc($result);
+
+        if (isset($arreglo)) {
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
+    public function GetEmailRepeated($correo) {
+
+        $query = "SELECT * FROM admin WHERE correo=?";
+
+        $result = $this->db->sendQuery($query, [$correo], 's');
+
+        $arreglo = mysqli_fetch_assoc($result);
+
+        if (isset($arreglo)) {
+            return true;
+        }else{
+            return false;
         }
         
     }

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+    $nombreuser = $_SESSION['user'];
+}else {
+    $nombreuser = "Invitado";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,15 +31,28 @@
 
   <div class="container">
 
-      
-
-  <div class="row d-flex">
+    <div class="row d-flex">
         <div class="col-12 nav-bar d-flex justify-content-around">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="index.php?pagina=registro" class="nav-link">Registro (usuarios)</a>
+                            <a href="index.php?pagina=home" class='nav-link'>
+                                <?php  
+                                echo htmlspecialchars($nombreuser);
+                                ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=registro';
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>" class="nav-link">Registro (usuarios)
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=estudiantes" class="nav-link active">Usuarios registrados</a>
@@ -49,13 +70,24 @@
                             <a href="index.php?pagina=cursos" class="nav-link">Ver cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
+                            <a href="
+                            <?php echo isset($_SESSION['acceso']) ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; 
+                            ?>" class="nav-link">
+                            <?php
+                            if (isset($_SESSION['acceso']) ) {
+                                echo "Log Out";
+                            }else {
+                                echo "Log In";
+                            }
+                            ?>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </div>
+
 
     <!--TABLA ESTUDIANTES-->
     <div class="row">
@@ -97,7 +129,17 @@
 
                         <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
 
-                        <td> <a href="index.php?pagina=editar&id=<?php echo $user['numeroDoc'];?>"><i class="bi bi-pencil-square"></a></i></td>
+                        <td> 
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=editar&id='.$user['numeroDoc'];
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>"><i class="bi bi-pencil-square">
+                            </a></i> 
+                        </td>
                         
                       </tr>
                     <?php endforeach; ?>
@@ -110,68 +152,17 @@
                 <!--Fin tabla admins-->
             </div>
     </div>
-    <form action="index.php?pagina=home&action=reporteAprendices" method="post">
-            <button type="submit" class="btn btn-primary boton mt-3">descargar reporte</button>
-            </form>
 
-    <!--MODAL PARA EDITAR ESTUDIANTES  -->
-    <!-- <div class="row">
-        <div class="col-12">
-            <div class="modal fade" tabindex="-1" id="modal-editar-estudiante">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Editar estudiante</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <form class="formulario">
-                      <div class="mb-3">
-                        <span>Numero de documento</span>
-                        <input type="number" class="form-control">
-                      </div>
+    <div class="row">
+      <div class="col-12">
+          <form action="index.php?pagina=home&action=reporteAprendices" method="post">
+                <button type="submit" class="btn btn-primary boton mt-3">Descargar reporte</button>
+          </form>
+      </div>
+    </div>
+    
 
-                      <div class="mb-3">
-                        <span>Nombre completo</span>
-                        <input type="text" class="form-control" >
-                      </div>
 
-                      <div class="mb-3">
-                        <span>Apellido(s)</span>
-                        <input type="text" class="form-control" >
-                      </div>
-        
-                      <div class="mb-3">
-                        <span>Curso</span>
-                        <select class="form-select" aria-label="Default select example">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                        </select>
-                      </div>
-
-                      <div class="mb-3">
-                        <span>Correo electrónico</span>
-                        <input type="email" class="form-control">
-                      </div>
-
-                      <div class="mb-3">
-                        <span>Número de teléfono</span>
-                        <input type="text" class="form-control">
-                      </div>
-
-                    </form>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>  -->
 
   </div>
 

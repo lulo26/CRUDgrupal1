@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+    header("location: index.php?pagina=home");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +38,17 @@
        
                 <div class="mb-3 btn-enviar">
                     <button type="submit" class="btn btn-primary boton" name="action" value="login">Iniciar Sesión</button>
-                  </div>
+                </div>
 
-                <a href="index.php?pagina=adminregistro"><span>¿No tienes cuenta aún? Registrate aquí!</span></a>
-                
+                <div class="row">
+                    <div class="col-6">
+                        <a href="index.php?pagina=adminregistro"><span>¿No tienes cuenta aún? Registrate aquí!</span></a>
+                    </div>
+                    <div class="col">
+                        <a href="index.php?pagina=home" class="">Ingresar como invitado</a>
+                    </div>
+                    
+                </div>
           </form>
           <!--FIN FORMULARIO-->
           </div>

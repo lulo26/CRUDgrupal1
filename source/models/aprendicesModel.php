@@ -28,17 +28,6 @@ class AprendicesModel{
         return $users;
     }
 
-    /*  public function GetUsers(){
-        $query = "SELECT * FROM aprendices";
-        $result = $this->db->sendQuery($query);
-
-        $users = [];
-        while ($row = mysqli_fetch_assoc($result)){
-            $users[] = $row;
-        }
-        return $users;
-    } */
-
     public function GetUserID($id){
         $query = "SELECT * FROM aprendices WHERE numeroDoc = ?";
         $result = $this->db->sendQuery($query, [$id], 'i');
@@ -77,6 +66,19 @@ class AprendicesModel{
     public function GetEmailUser($email){
         $query="SELECT * FROM aprendices WHERE correo=?";
         $result = $this->db->sendQuery($query, [$email], 's');
+        $value = mysqli_fetch_assoc($result);
+
+        if (isset($value)) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function GetIDUser($id){
+        $query="SELECT * FROM aprendices WHERE numeroDoc =?";
+        $result = $this->db->sendQuery($query, [$id], 'i');
         $value = mysqli_fetch_assoc($result);
 
         if (isset($value)) {

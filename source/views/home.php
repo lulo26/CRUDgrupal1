@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+
+    $nombreuser = $_SESSION['user'];
+}else {
+    $nombreuser = "Invitado";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +32,25 @@
                 <div class="container-fluid">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="index.php?pagina=registro" class="nav-link active">Registro (usuarios)</a>
+                            <a href="index.php?pagina=home" class='nav-link active'>
+                                <?php  
+                                    echo htmlspecialchars($nombreuser);
+                                ?>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=registro';
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>" class="nav-link">Registro (usuarios)
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?pagina=estudiantes" class="nav-link">Aprendices registrados</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
@@ -41,7 +65,18 @@
                             <a href="index.php?pagina=cursos" class="nav-link">Ver cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
+                            <a href="
+                            <?php echo isset($_SESSION['acceso']) ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>" class="nav-link">
+                            <?php
+                            if (isset($_SESSION['acceso']) ) {
+                                echo "Log Out";
+                            }else {
+                                echo "Log In";
+                            }
+                            ?>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -55,40 +90,9 @@
         </div>
     </div>
 
-    <!-- <div class="row d-flex mt-4 links">
-        <div class="col-3">
-           <a class="btn" id="btn-registro" href="index.php?pagina=registro">
-            Registro
-        </a>
-        </div>
-
-        <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=estudiantes">
-                Todos los estudiantes registrados
-             </a>
-        </div>
-
-        <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=adminregistro">
-                Registro (admin)
-             </a>
-        </div>
-
-        <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=inicioadmin">
-                Inicio de Sesión (admin)
-             </a>
-        </div>
-
-        <div class="col-3 link">
-             <a class="btn" id="btn-tabla-registros" href="index.php?pagina=admins">
-                Tabla con admins registrados
-             </a>
-        </div>
-
-    </div> -->
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
 </body>
 </html>
