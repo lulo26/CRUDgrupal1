@@ -3,9 +3,11 @@ require_once 'source/controllers/aprendicesController.php';
 require_once 'source/controllers/homeController.php';
 require_once 'source/controllers/adminsController.php';
 require_once 'source/controllers/fpdfController.php';
+require_once 'source/controllers/cursosController.php';
  
 $controller = new AprendicesController();
 $controllerAdmin = new AdminsController();
+$controllerCursos = new CursosController();
 $controllerPDFaprendices = new FpdfController();
 $homie = new HomeController();
 
@@ -13,6 +15,7 @@ $homie = new HomeController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->manageForm();
     $controllerAdmin->manageAdmins();
+    $controllerCursos->manageCursos();
 
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
@@ -23,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             case 'admineditar':
                 $controllerAdmin->showAdmin();
+                break;
+
+            case 'cursoeditar':
+                $controllerCursos->showCursos();
                 break;
 
             case 'reporteAprendices':
@@ -77,6 +84,18 @@ if (count($_GET) > 0) {
 
         case 'adminlogin':
             $controllerAdmin->goLogIn();
+            break;
+        
+        case 'cursocrear':
+            $controllerCursos->goCreatecurso();
+            break;
+
+        case 'cursoeditar':
+            $controllerCursos->showCursos($_GET['id']);
+            break;
+
+        case 'cursos':
+            $controllerCursos->listCursos();
             break;
 
         default:

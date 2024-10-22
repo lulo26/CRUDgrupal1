@@ -1,27 +1,35 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    min-height: 100vh;
-    backdrop-filter:blur(.9px);
+body {
+  min-height: 100vh;
+  backdrop-filter: blur(0.9px);
 }
 
-.links{
-    padding: 20px;
-    border: 2px solid gray;
-    border-radius: 40px;
-    align-items: center;
+.links {
+  padding: 20px;
+  border: 2px solid gray;
+  border-radius: 40px;
+  align-items: center;
 }
 
-#btn-registro,#btn-tabla-registros{
-    color: rgb(75, 141, 226);
-    border-radius: 50px;
+#btn-registro,
+#btn-tabla-registros {
+  color: rgb(75, 141, 226);
+  border-radius: 50px;
 }
 
-#btn-registro:hover,#btn-tabla-registros:hover{
-    color: #fff;
-    background-color: #000;
-    transition: color .3s, background .3s;
+#btn-registro:hover,
+#btn-tabla-registros:hover {
+  color: #fff;
+  background-color: #000;
+  transition: color 0.3s, background 0.3s;
+}
+
+.nav-bar {
+  font-family: "Lexend", sans-serif;
+  font-weight: 900;
+  background-color: red;
 }

@@ -35,6 +35,12 @@
                             <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
+                            <a href="index.php?pagina=cursocrear" class="nav-link">Crear curso</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?pagina=cursos" class="nav-link">Ver cursos</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
                         </li>
                     </ul>
