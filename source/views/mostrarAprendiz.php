@@ -1,7 +1,9 @@
 <?php
 session_start();
-if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
     $nombreuser = $_SESSION['user'];
+}else {
+    $nombreuser = "Invitado";
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +44,15 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=registro" class="nav-link">Registro (usuarios)</a>
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=registro';
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>" class="nav-link">Registro (usuarios)
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=estudiantes" class="nav-link active">Usuarios registrados</a>
@@ -51,13 +61,18 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
                             <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a <?php if ($_SESSION['acceso']==true) echo 'hidden'; ?> href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
+                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
                             <a href="
-                            <?php echo $_SESSION['acceso']== true ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; ?>" class="nav-link">
+                            <?php echo isset($_SESSION['acceso']) ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; 
+                            ?>" class="nav-link">
                             <?php
-                            echo $_SESSION['acceso']==true ? 'Log Out' : 'Log In';
+                            if (isset($_SESSION['acceso']) ) {
+                                echo "Log Out";
+                            }else {
+                                echo "Log In";
+                            }
                             ?>
                             </a>
                         </li>
@@ -108,7 +123,17 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
 
                         <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
 
-                        <td> <a href="index.php?pagina=editar&id=<?php echo $user['numeroDoc'];?>"><i class="bi bi-pencil-square"></a></i></td>
+                        <td> 
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=editar&id='.$user['numeroDoc'];
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>"><i class="bi bi-pencil-square">
+                            </a></i> 
+                        </td>
                         
                       </tr>
                     <?php endforeach; ?>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+    $nombreuser = $_SESSION['user'];
+}else {
+    $nombreuser = "Invitado";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +29,8 @@
 
           <input type="text" hidden name="idadmin" value="<?php echo isset($admin) ?
           htmlspecialchars($admin['idadmin']) : ''; ?>">
+
+          <input type="hidden" name="user_admin" value="<?php echo isset($_SESSION['acceso']) ? 'exist' : '' ?>">
 
                 <div class="mb-3">
                     <span>Nombre(s)</span>

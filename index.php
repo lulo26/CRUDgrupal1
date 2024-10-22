@@ -13,12 +13,16 @@ $homie = new HomeController();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller->manageForm();
+    
     $controllerAdmin->manageAdmins();
     $login->LogIn();
 
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
+            
+            case 'registrar':
+                $controller->manageForm();
+                break;
            
             case 'editar':
                 $controller->showForm();

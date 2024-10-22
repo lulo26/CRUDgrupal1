@@ -1,7 +1,10 @@
 <?php
 session_start();
-if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+
     $nombreuser = $_SESSION['user'];
+}else {
+    $nombreuser = "Invitado";
 }
 ?>
 <!DOCTYPE html>
@@ -31,27 +34,41 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
                         <li class="nav-item">
                             <a href="index.php?pagina=home" class='nav-link active'>
                                 <?php  
-                                echo htmlspecialchars($nombreuser);
+                                    echo htmlspecialchars($nombreuser);
                                 ?>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=registro" class="nav-link">Registro (usuarios)</a>
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=registro';
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>" class="nav-link">Registro (usuarios)
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
+                            <a href="index.php?pagina=estudiantes" class="nav-link">Aprendices registrados</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a <?php if ($_SESSION['acceso']==true) echo 'hidden'; ?> href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
+                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
                             <a href="
-                            <?php echo $_SESSION['acceso']== true ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; ?>" class="nav-link">
+                            <?php echo isset($_SESSION['acceso']) ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>" class="nav-link">
                             <?php
-                            echo $_SESSION['acceso']==true ? 'Log Out' : 'Log In';
+                            if (isset($_SESSION['acceso']) ) {
+                                echo "Log Out";
+                            }else {
+                                echo "Log In";
+                            }
                             ?>
                             </a>
                         </li>
@@ -70,5 +87,6 @@ if($_SESSION['acceso'] == true && $_SESSION['user'] != null){
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
 </body>
 </html>

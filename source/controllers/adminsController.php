@@ -30,6 +30,9 @@ Class AdminsController{
                 $mail = $_POST['mail'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
+
+                //esto es una mierda de solucion pero sirve
+                $user_admin = $_POST['user_admin'];
                 
                 $user_repeated = $this->adminsModel->GetUserRepeated($usuario);
                 $email_repeated = $this->adminsModel->GetEmailRepeated($mail);
@@ -43,11 +46,16 @@ Class AdminsController{
                 }else {
                     $this->adminsModel->CreateAdmin($usuario, $pass, $mail, $nombre, $apellido);
 
-                    session_start();
-                    header('location: index.php?pagina=home');
-
-                    $_SESSION['user']=$usuario; 
-                    $_SESSION['acceso']=true;
+                    if (!empty($user_admin)) {
+                        header('location: index.php?pagina=admins');
+                        
+                    }else {
+                        session_start();
+                        header('location: index.php?pagina=home');
+                        $_SESSION['user']=$usuario; 
+                        $_SESSION['acceso']=true;
+                    }
+                    
 
                     exit();
                 }
