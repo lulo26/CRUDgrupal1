@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
+
+    $nombreuser = $_SESSION['user'];
+}else {
+    $nombreuser = "Invitado";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,33 +35,68 @@
 
   <div class="container">
 
-      
-
     <div class="row d-flex">
         <div class="col-12 nav-bar d-flex justify-content-around">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="index.php?pagina=registro" class="nav-link">Registro (usuarios)</a>
+                            <a href="index.php?pagina=home" class='nav-link'>
+                                <?php  
+                                echo htmlspecialchars($nombreuser);
+                                ?>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link active">Usuarios registrados</a>
+                            <a href="
+                                <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=registro';
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                                ?>" class="nav-link">Registro (usuarios)
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
+                            <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
+                            <a href="
+                            <?php echo isset($_SESSION['acceso']) ? 'index.php?pagina=adminregistro' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>
+                            " class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=cursocrear" class="nav-link">Crear curso</a>
+                            <a href="
+                            
+                            <?php echo isset($_SESSION['acceso']) ? 'index.php?pagina=cursocrear' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>
+                            
+                            " class="nav-link">Crear curso</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=cursos" class="nav-link">Ver cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=adminlogin" class="nav-link">Log in</a>
+                            <a href="
+                            <?php echo isset($_SESSION['acceso']) ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>" class="nav-link">
+
+                            <?php
+                            if (isset($_SESSION['acceso']) ) {
+                                echo "Log Out";
+                            }else {
+                                echo "Log In";
+                            }
+                            ?>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -84,7 +131,16 @@
 
                         <td> <?php echo htmlspecialchars($curso['fecha_creacion']) ?></td>
 
-                        <td> <a href="index.php?pagina=editar&id=<?php echo $curso['idcursos'];?>"><i class="bi bi-pencil-square"></a></i></td>
+                        <td> <a href="
+                        <?php 
+                                if (isset($_SESSION['acceso'])) {
+                                    echo 'index.php?pagina=cursoeditar&id='.$curso['idcursos'];
+                                }else {
+                                    echo 'index.php?pagina=adminlogin';
+                                }
+                         ?>
+                        
+                        "><i class="bi bi-pencil-square"></a></i></td>
                         
                       </tr>
                     <?php endforeach; ?>

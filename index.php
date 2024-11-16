@@ -97,7 +97,12 @@ if (count($_GET) > 0) {
             break;
 
         case 'cursoeditar':
-            $controllerCursos->showCursos($_GET['id']);
+            if (isset($_GET['id'])) {
+                $controllerCursos->showCursos($_GET['id']);
+            }else {
+                $controllerAdmin->goLogIn();
+            }
+            
             break;
 
         case 'cursos':

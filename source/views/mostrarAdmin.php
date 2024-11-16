@@ -56,10 +56,20 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                             <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
+                            <a href="
+                            <?php echo isset($_SESSION['acceso']) ? 'index.php?pagina=adminregistro' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>
+                            " class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=cursocrear" class="nav-link">Crear curso</a>
+                            <a href="
+                            
+                            <?php echo isset($_SESSION['acceso']) ? 'index.php?pagina=cursocrear' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>
+                            
+                            " class="nav-link">Crear curso</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=cursos" class="nav-link">Ver cursos</a>

@@ -32,9 +32,9 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                 <div class="container-fluid">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="index.php?pagina=home" class='nav-link active'>
+                            <a href="index.php?pagina=home" class='nav-link'>
                                 <?php  
-                                    echo htmlspecialchars($nombreuser);
+                                echo htmlspecialchars($nombreuser);
                                 ?>
                             </a>
                         </li>
@@ -50,16 +50,26 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link">Aprendices registrados</a>
+                            <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
+                            <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="index.php?pagina=adminregistro" class="nav-link">Registro (admin)</a>
+                            <a href="
+                            <?php echo isset($_SESSION['acceso']) ? 'index.php?pagina=adminregistro' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>
+                            " class="nav-link">Registro (admin)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=cursocrear" class="nav-link">Crear curso</a>
+                            <a href="
+                            
+                            <?php echo isset($_SESSION['acceso']) ? 'index.php?pagina=cursocrear' : 'index.php?pagina=adminlogin'; 
+                            
+                            ?>
+                            
+                            " class="nav-link">Crear curso</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=cursos" class="nav-link">Ver cursos</a>
@@ -69,6 +79,7 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                             <?php echo isset($_SESSION['acceso']) ? 'source/controllers/LogOutController.php' : 'index.php?pagina=adminlogin'; 
                             
                             ?>" class="nav-link">
+
                             <?php
                             if (isset($_SESSION['acceso']) ) {
                                 echo "Log Out";

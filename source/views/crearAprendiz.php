@@ -52,20 +52,52 @@
                         </select>
                       </div>
                       
-                      <!--Con esto cargamos todos los cursos existentes-->
                       <div class="mb-3">
-                        <span>Curso al que se piensa inscribir: </span>
-                        <select name="curso" id="curso" class="form-select" aria-label="Default select example" value="<?php echo isset($user) ?
-                        $user['curso'] : ''; ?>" >
-                          <?php
-                              require_once 'source/models/aprendicesModel.php';
-                              $courses= new aprendicesModel();
-                              foreach ($courses->GetCourses() as $course) {
-                                echo '<option value="' . $course['idcursos'] . '">' . $course['nombre'] . '</option>';
-                              }
-                          ?>
-                        </select>
+                        <span>Cursos al que se piensa inscribir: </span>
                       </div>
+
+                      <div class="col mb-3">
+                          <select name="curso[]" id="curso" class="form-select" aria-label="Default select example" value="<?php echo isset($user) ?
+                          $user['curso'] : ''; ?>" >
+                            <?php
+                                require_once 'source/models/aprendicesModel.php';
+                                $courses= new aprendicesModel();
+                                foreach ($courses->GetCourses() as $course) {
+                                  echo '<option value="' . $course['idcursos'] . '">' . $course['nombre'] . '</option>';
+                                }
+                            ?>
+                          </select>
+                      </div>
+
+                      <?php if(isset($user['numeroDoc'])) : ?>
+                      <!--Con esto cargamos todos los cursos existentes-->
+                      <div class="mb-3" id="container_selects">
+                        <?php 
+                        require_once 'source/models/aprendicesModel.php';
+                        $courses= new aprendicesModel();
+
+                        for($i=1; $i <count($courses->GetCourses()) ; $i++) : ?>
+
+                        <div class="input-group mb-3">
+                          <select name="curso[]" id="curso" class="form-select" aria-label="Default select example" value="<?php echo isset($user) ?
+                          $user['curso'] : ''; ?>" >
+                            <?php
+                                require_once 'source/models/aprendicesModel.php';
+                                $courses= new aprendicesModel();
+                               
+                                
+                                foreach ($courses->GetCourses() as $course) {
+                                  echo '<option value="' . $course['idcursos'] . '">' . $course['nombre'] . '</option>';
+                                }
+                            ?>
+                          </select>
+                          <span class="input-group-text btn btn-danger">Borrar</span>
+                        </div>
+
+                        <?php endfor ?>
+                      </div>
+                        
+                      <?php endif ?>
 
                       <div class="mb-3">
                         <span>Fecha de nacimiento</span>
@@ -101,6 +133,8 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="assets/js/asignar_cursos.js"></script>
 
 </body>
 </html>
