@@ -55,8 +55,9 @@ class AprendicesModel{
 
     //nombre del curso con el que se registro el usuario
     public function GetCourseUserID($id){
-        $query = "SELECT cursos.nombre FROM aprendices_has_cursos
-        INNER JOIN cursos ON cursos.idcursos = aprendices_has_cursos.cursos_idcursos WHERE aprendices_numeroDoc = ?";
+        $query = "SELECT aprendices_numeroDoc,cursos.nombre FROM aprendices_has_cursos
+        INNER JOIN cursos ON cursos.idcursos = aprendices_has_cursos.cursos_idcursos 
+        WHERE aprendices_numeroDoc = ?";
 
         $result = $this->db->sendQuery($query, [$id], 'i');
 

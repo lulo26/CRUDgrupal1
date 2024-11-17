@@ -29,15 +29,14 @@ Class AprendicesController{
     public function manageForm(){
         if(isset($_POST['action'])) {
             if($_POST['action'] == 'agregar'){
-
                 $numeroDoc = intval($_POST['numeroDoc']);
-                $nombre = htmlspecialchars(($_POST['nombre']));
-                $apellido = htmlspecialchars($_POST['apellido']);
+                $nombre = htmlspecialchars(trim(($_POST['nombre'])));
+                $apellido = htmlspecialchars(trim($_POST['apellido']));
                 $genero =htmlspecialchars($_POST['genero']);
-                $curso = htmlspecialchars($_POST['curso']);
+                $curso = $_POST['curso'];
                 $fecha_nac = htmlspecialchars($_POST['fecha_nac']);
-                $telefono = htmlspecialchars($_POST['telefono']);
-                $correo = filter_var($_POST['correo'],FILTER_SANITIZE_EMAIL);
+                $telefono = htmlspecialchars(trim($_POST['telefono']));
+                $correo = filter_var(trim($_POST['correo'],FILTER_SANITIZE_EMAIL));
 
                 function check_post(array $campos){
                     $validState = true;
@@ -49,18 +48,23 @@ Class AprendicesController{
             
                     return $validState;
                 }
+                $count_post = 0;
+                $array_validate = array();
 
-                $arrayCampos = ["numeroDoc","nombre","apellido","genero","curso","fecha_nac","telefono","correo"];
+                foreach ($curso as $item) {
+                    if (isset($item) && !empty(intval($item)) && $item>0) {
+                        $count_post++;
+                    }
+                }
 
-                if (check_post($arrayCampos)) {
+                $arrayCampos = ["nombre","apellido","genero","fecha_nac","telefono","correo"];
+
+                if (check_post($arrayCampos) && $count_post>0) {
 
                     $sql = [
                         "correo" => $this->aprendicesModel->GetEmailUser($correo),
                         "id" => $this->aprendicesModel->GetIDUser($numeroDoc)
                     ];
-
-                    $current_date = new DateTime();
-                    $current_date->format("d-m-Y");
 
                     if ($sql["correo"]) {
                         echo '<script>alert("Ese correo ya existe")</script>';
@@ -68,20 +72,21 @@ Class AprendicesController{
                     }elseif ($sql["id"]) {
                         echo '<script>alert("Ese numero de documento ya existe")</script>';
 
-                    }elseif ($fecha_nac > date()) {
-                        # code...
                     } else {
                         $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
-                        $this->aprendicesModel->CreateCourses($numeroDoc,$curso);
+
+                        foreach ($_POST['servicios']  as $item) {
+                            $this->aprendicesModel->CreateCourses($numeroDoc,$curso);
+                        }
+                        
                         header('Location: index.php?pagina=estudiantes');
                         exit();
                     }
-                    
-                }else{
-                    echo '<script>alert("Ingrese todos los campos")</script>';
+
                 }
 
             } elseif ($_POST['action'] == 'editar'){
+
                 $numeroDoc = $_POST['numeroDoc'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];

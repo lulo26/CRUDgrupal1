@@ -59,6 +59,7 @@
                       <div class="col mb-3">
                           <select name="curso[]" id="curso" class="form-select" aria-label="Default select example" value="<?php echo isset($user) ?
                           $user['curso'] : ''; ?>" >
+                          <option value="0" selected>Seleccione un curso</option>
                             <?php
                                 require_once 'source/models/aprendicesModel.php';
                                 $courses= new aprendicesModel();
@@ -83,15 +84,14 @@
                           $user['curso'] : ''; ?>" >
                             <?php
                                 require_once 'source/models/aprendicesModel.php';
-                                $courses= new aprendicesModel();
-                               
+                                $courses = new aprendicesModel();
                                 
                                 foreach ($courses->GetCourses() as $course) {
                                   echo '<option value="' . $course['idcursos'] . '">' . $course['nombre'] . '</option>';
                                 }
                             ?>
                           </select>
-                          <span class="input-group-text btn btn-danger">Borrar</span>
+                          <span class="input-group-text btn btn-danger" id="borrar_cursos">Borrar</span>
                         </div>
 
                         <?php endfor ?>
@@ -118,7 +118,7 @@
                       </div>
 
                       <div class="mb-3 btn-enviar">
-                        <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?= isset($user) ? 'actualizar' : 'agregar'; ?></button>
+                        <button type="submit" class="btn btn-primary boton" name="<?php echo isset($user) ? 'action' : 'action';?>" value="<?php echo isset($user) ? 'editar' : 'agregar'; ?>"><?= isset($user) ? 'Actualizar' : 'Agregar'; ?></button>
                       </div>
 
                       <a href="index.php?pagina=estudiantes"><span>TABLA APRENDICES</span></a>
