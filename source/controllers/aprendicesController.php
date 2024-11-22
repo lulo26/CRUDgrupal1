@@ -68,10 +68,10 @@ Class AprendicesController{
                     ];
 
                     if ($sql["correo"]) {
-                        echo '<script>alert("Ese correo ya existe")</script>';
+                        echo '<script>alert("Ese correo ya está registrado")</script>';
 
                     }elseif ($sql["id"]) {
-                        echo '<script>alert("Ese numero de documento ya existe")</script>';
+                        echo '<script>alert("Ese numero de documento ya está registrado")</script>';
 
                     }elseif ($sql["telefono"]) {
                         echo '<script>alert("Ese numero de telefono ya está registrado")</script>';

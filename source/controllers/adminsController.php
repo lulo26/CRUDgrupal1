@@ -100,7 +100,7 @@ Class AdminsController{
                     $email_exist = $this->adminsModel->getEmailByID($mail,$idadmin);
 
                     if (isset($email_exist)) {
-                        header('location:index.php?pagina=editaradmin&id=28'); 
+                        
                         echo '<script>alert("Ese email ya lo tiene otro administrador")</script>';
                     } else {
 
