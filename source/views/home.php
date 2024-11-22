@@ -32,7 +32,7 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                 <div class="container-fluid">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="index.php?pagina=home" class='nav-link'>
+                            <a href="index.php?pagina=home" class='nav-link active'>
                                 <?php  
                                 echo htmlspecialchars($nombreuser);
                                 ?>
@@ -53,7 +53,7 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                             <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
+                            <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
                             <a href="

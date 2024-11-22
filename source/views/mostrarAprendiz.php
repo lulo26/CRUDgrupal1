@@ -55,10 +55,10 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
+                            <a href="index.php?pagina=estudiantes" class="nav-link active">Usuarios registrados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
+                            <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
                         </li>
                         <li class="nav-item ">
                             <a href="

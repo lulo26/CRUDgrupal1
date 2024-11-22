@@ -55,7 +55,8 @@ class AprendicesModel{
 
     //nombre del curso con el que se registro el usuario
     public function GetCourseUserID($id){
-        $query = "SELECT aprendices_numeroDoc,cursos.nombre FROM aprendices_has_cursos
+        $query = "SELECT aprendices_numeroDoc,cursos.nombre,cursos.idcursos
+        FROM aprendices_has_cursos
         INNER JOIN cursos ON cursos.idcursos = aprendices_has_cursos.cursos_idcursos 
         WHERE aprendices_numeroDoc = ?";
 
@@ -88,6 +89,18 @@ class AprendicesModel{
             return false;
         }
 
+    }
+
+    public function GetNumUser($telefono){
+        $query="SELECT * FROM aprendices WHERE telefono = ?";
+        $result = $this->db->sendQuery($query, [$telefono], 'i');
+        $value = mysqli_fetch_assoc($result);
+
+        if (isset($value)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo){

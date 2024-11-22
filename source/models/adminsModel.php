@@ -68,6 +68,12 @@ class AdminsModel{
        return $admins;
     }
 
+    public function getEmailByID($correo,$id){
+        $query = "SELECT * FROM `admin` WHERE correo = ? and idadmin != ?";
+        $result = $this->db->sendQuery($query, [$correo,$id], 'si');
+        return mysqli_fetch_assoc($result);
+    }
+
     public function getAdminID($id){
         $query = "SELECT * FROM `admin` WHERE idadmin = ?";
         $result = $this->db->sendQuery($query, [$id], 'i');
@@ -82,7 +88,7 @@ class AdminsModel{
     public function EditAdmin($pass, $mail, $nombre, $apellido,$id){
 
         $query = "UPDATE `admin` SET password=?, correo=?, nombre=?, apellido=? WHERE idadmin=?";
-        return $this->db->sendQuery($query, [$usuario,$pass, $mail, $nombre, $apellido,$id], 'ssssi');
+        return $this->db->sendQuery($query, [$pass, $mail, $nombre, $apellido,$id], 'ssssi');
 
     }
 

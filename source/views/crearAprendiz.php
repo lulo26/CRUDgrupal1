@@ -57,16 +57,20 @@
                       </div>
 
                       <div class="col mb-3">
-                          <select name="curso[]" id="curso" class="form-select" aria-label="Default select example" value="<?php echo isset($user) ?
-                          $user['curso'] : ''; ?>" >
-                          <option value="0" selected>Seleccione un curso</option>
+                          <?php print_r($courseid)?>
+                          <select name="curso[]" id="curso" class="form-select" aria-label="Default select example">
+
+                          <option value="0">Seleccione un curso</option>
+
                             <?php
                                 require_once 'source/models/aprendicesModel.php';
                                 $courses= new aprendicesModel();
-                                foreach ($courses->GetCourses() as $course) {
-                                  echo '<option value="' . $course['idcursos'] . '">' . $course['nombre'] . '</option>';
-                                }
-                            ?>
+                                foreach ($courses as $key) : ?>
+                            <option>
+                              <?php $key["idcursos"]?>
+                            </option>
+
+                            <?php endforeach ?>
                           </select>
                       </div>
 

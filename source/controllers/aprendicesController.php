@@ -63,7 +63,8 @@ Class AprendicesController{
 
                     $sql = [
                         "correo" => $this->aprendicesModel->GetEmailUser($correo),
-                        "id" => $this->aprendicesModel->GetIDUser($numeroDoc)
+                        "id" => $this->aprendicesModel->GetIDUser($numeroDoc),
+                        "telefono" =>$this->aprendicesModel->GetNumUser($telefono)
                     ];
 
                     if ($sql["correo"]) {
@@ -72,17 +73,27 @@ Class AprendicesController{
                     }elseif ($sql["id"]) {
                         echo '<script>alert("Ese numero de documento ya existe")</script>';
 
-                    } else {
-                        $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
+                    }elseif ($sql["telefono"]) {
+                        echo '<script>alert("Ese numero de telefono ya está registrado")</script>';
 
-                        foreach ($_POST['servicios']  as $item) {
-                            $this->aprendicesModel->CreateCourses($numeroDoc,$curso);
+                    }else {
+                        $insert = $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
+
+                        if ($insert) {
+                            foreach ($_POST['curso']  as $item) {
+                                $this->aprendicesModel->CreateCourses($numeroDoc,$item);
+                            }
+
+                            header('Location: index.php?pagina=estudiantes');
+                            exit();
+
+                        }else {
+                            echo '<script>alert("Ocurrió un error durante el proceso de inserción")</script>';
                         }
-                        
-                        header('Location: index.php?pagina=estudiantes');
-                        exit();
                     }
 
+                }else {
+                    echo '<script>alert("Faltan datos")</script>';
                 }
 
             } elseif ($_POST['action'] == 'editar'){
