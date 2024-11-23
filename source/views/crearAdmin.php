@@ -25,7 +25,7 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
           <h1><?php echo isset($admin) ? 'EDITAR ADMINISTRADOR' : 'REGISTRO (ADMINS)';
           ?></h1>
           <!--FORMULARIO-->
-          <form class="formulario" action="<?php echo isset($admin) ? 'index.php?pagina=editaradmin&action=admineditar' : 'index.php?pagina=adminregistro&action=adminregistrar' ?>" method="post">
+          <form class="formulario" method="post">
 
           <input type="text" hidden name="idadmin" value="<?php echo isset($admin) ?
           htmlspecialchars($admin['idadmin']) : ''; ?>">

@@ -30,23 +30,6 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
 </head>
 <body>
 
-    <?php
-    if (isset($_SESSION['mensaje'])) {
-        $respuesta = $_SESSION['mensaje']; ?>
-        <script>
-            Swal.fire({
-            title: "Good job!",
-            text: '<?php echo $_SESSION["mensaje"] ?>',
-            icon: "success"
-            });
-        </script>
-        <?php
-        unset($_SESSION["mensaje"]);
-
-    }
-    ?>
-    
-
   <div class="container">
 
     <div class="row d-flex">

@@ -17,13 +17,23 @@ Class AprendicesController{
     }
 
     public function showForm($id){
-            $user =$this->aprendicesModel->GetUserID($id);
-            $courseid =$this->aprendicesModel->GetCourseUserID($id);
-            include './source/views/crearAprendiz.php';
+        $user =$this->aprendicesModel->GetUserID($id);
+        include './source/views/crearAprendiz.php';
     }
 
     public function goRegister(){
         include './source/views/crearAprendiz.php';
+    }
+
+    private function check_post(array $campos){
+        $validState = true;
+        foreach ($campos as $valor) {
+        if (!isset($_POST[$valor]) || empty(trim($_POST[$valor]))) {
+            $validState = false;
+            }   
+        }
+
+        return $validState;
     }
 
     public function AsignarCursos() {
@@ -38,16 +48,9 @@ Class AprendicesController{
                 foreach ($cursos as $curso) {
                     $insert  = $this->aprendicesModel->CreateCourses($estudiante,$curso);
                 }
-
-                $_SESSION['mensaje']="";
-                
-            } else {
-                session_start();
-                $_SESSION['mensaje']="Faltan datos";
+   
             }
-            
-            
-            
+                    
         }
         
     }
@@ -63,20 +66,11 @@ Class AprendicesController{
                 $telefono = htmlspecialchars(trim($_POST['telefono']));
                 $correo = filter_var(trim($_POST['correo'],FILTER_SANITIZE_EMAIL));
 
-                function check_post(array $campos){
-                    $validState = true;
-                    foreach ($campos as $valor) {
-                    if (!isset($_POST[$valor]) || empty(trim($_POST[$valor]))) {
-                        $validState = false;
-                        }   
-                    }
-            
-                    return $validState;
-                }
+                
 
                 $arrayCampos = ["nombre","apellido","genero","fecha_nac","telefono","correo"];
 
-                if (check_post($arrayCampos)) {
+                if ($this->check_post($arrayCampos)) {
 
                     $sql = [
                         "correo" => $this->aprendicesModel->GetEmailUser($correo),
@@ -111,17 +105,33 @@ Class AprendicesController{
 
             } elseif ($_POST['action'] == 'editar'){
 
-                $numeroDoc = $_POST['numeroDoc'];
-                $nombre = $_POST['nombre'];
-                $apellido = $_POST['apellido'];
-                $genero = $_POST['genero'];
-                $fecha_nac = $_POST['fecha_nac'];
-                $telefono = $_POST['telefono'];
-                $correo = $_POST['correo'];
-                $this->aprendicesModel->EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc);
-                $this->aprendicesModel->EditCourses($numeroDoc,$curso, $numeroDoc);
-                header('Location: index.php?pagina=estudiantes');
-                exit();
+                $numeroDoc = intval($_POST['numeroDoc']);
+                $nombre = htmlspecialchars(trim(($_POST['nombre'])));
+                $apellido = htmlspecialchars(trim($_POST['apellido']));
+                $genero =htmlspecialchars($_POST['genero']);
+                $fecha_nac = htmlspecialchars(trim($_POST['fecha_nac']));
+                $telefono = htmlspecialchars(trim($_POST['telefono']));
+                $correo = filter_var(trim($_POST['correo'],FILTER_SANITIZE_EMAIL));
+
+                $arrayCampos = ["nombre","apellido","genero","fecha_nac","telefono","correo"];
+
+
+                if ($this->check_post($arrayCampos)) {
+                    $actualizar = $this->aprendicesModel->EditUser($nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc);
+
+                    if ($actualizar) {
+                        header('Location: index.php?pagina=estudiantes');
+                        exit();
+                    }else {
+                        echo "ME QUIERO MORIR";
+                    }
+
+                }else {
+                    echo '<script>alert("Faltan datos")</script>';
+
+                }
+                
+                
             }
         }
     }

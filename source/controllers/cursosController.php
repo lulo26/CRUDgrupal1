@@ -28,7 +28,8 @@ Class CursosController{
                 $descripcion = $_POST['descripcion'];
                 $fecha = $_POST['fecha_creacion'];
                 $this->cursosModel->CreateCurso($nombre, $descripcion, $fecha);
-                header('location: index.php?pagina=home');
+                
+                header('location: index.php?pagina=cursos');
                 exit();
 
             }elseif ($_POST['action'] === 'cursoeditar') {

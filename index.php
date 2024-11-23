@@ -7,6 +7,7 @@ require_once 'source/controllers/cursosController.php';
 require_once 'source/controllers/logInController.php';
  
 $controller = new AprendicesController();
+$asignarCursos = new AprendicesController();
 $controllerAdmin = new AdminsController();
 $controllerCursos = new CursosController();
 $controllerPDFaprendices = new FpdfController();
@@ -15,28 +16,33 @@ $homie = new HomeController();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controllerAdmin->manageAdmins();
-    $controllerCursos->manageCursos();
-    $controller->AsignarCursos();
-    $login->LogIn();
+    
+    if (isset($_POST['action'])) {
 
-    if (isset($_GET['action'])) {
-        switch ($_GET['action']) {
+        switch ($_POST['action']) {
             
-            case 'registrar':
+            case 'agregar':
                 $controller->manageForm();
                 break;
            
             case 'editar':
-                $controller->showForm();
+                $controller->manageForm();
+                break;
+
+            case 'adminregistrar':
+                    $controllerAdmin->manageAdmins();
                 break;
 
             case 'admineditar':
-                $controllerAdmin->listAdmins();
+                $controllerAdmin->manageAdmins();
                 break;
 
+            case 'cursocrear':
+                    $controllerCursos->manageCursos();
+                    break;
+
             case 'cursoeditar':
-                $controllerCursos->showCursos();
+                $controllerCursos->manageCursos();
                 break;
 
             case 'reporteAprendices':
@@ -50,6 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             default:
                 break;
         }
+    }
+
+    if (isset($_POST['btn_asignar'])) {
+        $asignarCursos->AsignarCursos();
     }
     
 }

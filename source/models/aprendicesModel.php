@@ -106,7 +106,7 @@ class AprendicesModel{
         return $this->db->sendQuery($query, [$numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo], "issssss");
     }
 
-    public function EditUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo){
+    public function EditUser($nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc){
         $query = "UPDATE aprendices SET numeroDoc = ?, nombre = ?, apellido = ?, genero = ?, fecha_nac = ?, telefono = ?, correo = ? WHERE numeroDoc = ?";
         return $this->db->sendQuery($query,[$numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo, $numeroDoc], "issssssi");
     }

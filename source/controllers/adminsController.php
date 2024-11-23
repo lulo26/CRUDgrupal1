@@ -2,7 +2,6 @@
 
 require_once './source/models/adminsModel.php';
 
-
 Class AdminsController{
     private $adminsModel;
     private $user;
@@ -13,7 +12,7 @@ Class AdminsController{
 
     public function listAdmins(): void{
         $admins = $this->adminsModel->getAdmins();
-        include 'source/views/mostrarAdmin.php';
+        include_once 'source/views/mostrarAdmin.php';
     }
 
     public function showAdmin($id){
@@ -21,31 +20,29 @@ Class AdminsController{
         include_once 'source/views/crearAdmin.php';
     }
 
+    private function checkear_post(array $campos){
+        $validState = true;
+        foreach ($campos as $valor) {
+        if (!isset($_POST[$valor]) || empty(trim($_POST[$valor]))) {
+            $validState = false;
+            }   
+        }
+        return $validState;
+    }
+
     public function manageAdmins(){
         if (isset($_POST['action'])){
-
+            
             if($_POST['action'] === 'adminregistrar'){
-                
                 $pass = md5($_POST['pass']);
                 $mail = $_POST['mail'];
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $usuario = $_POST['usuario'];
                 
-                function check_post(array $campos){
-                    $validState = true;
-                    foreach ($campos as $valor) {
-                    if (!isset($_POST[$valor]) || empty(trim($_POST[$valor]))) {
-                        $validState = false;
-                        }   
-                    }
-                    return $validState;
-                }
-                
-
                 $arrayCampos = array("usuario","pass","mail","nombre","apellido");
 
-                if (check_post($arrayCampos)) {
+                if ($this->checkear_post($arrayCampos)) {
                     //esto es una mierda de solucion pero sirve
                     $user_admin = $_POST['user_admin'];
                     
@@ -83,24 +80,14 @@ Class AdminsController{
                 $apellido = $_POST['apellido'];
                 $idadmin =$_POST['idadmin'];
 
-                function check_post(array $campos){
-                    $validState = true;
-                    foreach ($campos as $valor) {
-                    if (!isset($_POST[$valor]) || empty(trim($_POST[$valor]))) {
-                        $validState = false;
-                        }   
-                    }
-                    return $validState;
-                }
 
                 $arrayCampos = array("mail","nombre","apellido");
 
-                if (check_post($arrayCampos)) {
+                if ($this->checkear_post($arrayCampos)) {
 
                     $email_exist = $this->adminsModel->getEmailByID($mail,$idadmin);
 
                     if (isset($email_exist)) {
-                        
                         echo '<script>alert("Ese email ya lo tiene otro administrador")</script>';
                     } else {
 
@@ -112,8 +99,7 @@ Class AdminsController{
                                 header('location: index.php?pagina=admins');
                                 exit();
                             }else {
-                                echo '<script>alert("Ocurrió un error al momento de editar el usuario")</script>';
-                                $this->showAdmin($idadmin); 
+                                echo '<script>alert("Ocurrió un error al momento de editar el usuario")</script>'; 
                             }
     
                         } else {
@@ -125,14 +111,12 @@ Class AdminsController{
                                 exit();
                             }else {
                                 echo '<script>alert("Ocurrió un error al momento de editar el usuario")</script>';
-                                $this->showAdmin($idadmin); 
                             }
                         }
                     }
                     
                 }else {
                     echo '<script>alert("Ingrese todos los campos")</script>';
-                    $this->showAdmin($idadmin); 
                 }
 
                 
