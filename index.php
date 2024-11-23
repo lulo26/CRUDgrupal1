@@ -17,6 +17,7 @@ $homie = new HomeController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controllerAdmin->manageAdmins();
     $controllerCursos->manageCursos();
+    $controller->AsignarCursos();
     $login->LogIn();
 
     if (isset($_GET['action'])) {

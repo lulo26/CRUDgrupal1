@@ -25,9 +25,27 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
 
     <link rel="stylesheet" href="assets/nav-bar.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
+
+    <?php
+    if (isset($_SESSION['mensaje'])) {
+        $respuesta = $_SESSION['mensaje']; ?>
+        <script>
+            Swal.fire({
+            title: "Good job!",
+            text: '<?php echo $_SESSION["mensaje"] ?>',
+            icon: "success"
+            });
+        </script>
+        <?php
+        unset($_SESSION["mensaje"]);
+
+    }
+    ?>
+    
 
   <div class="container">
 
@@ -51,11 +69,11 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                                 }else {
                                     echo 'index.php?pagina=adminlogin';
                                 }
-                                ?>" class="nav-link">Registro (usuarios)
+                                ?>" class="nav-link">Registro (Estudiantes)
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link active">Usuarios registrados</a>
+                            <a href="index.php?pagina=estudiantes" class="nav-link active">Estudiantes registrados</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=admins" class="nav-link">Administradores</a>
@@ -100,85 +118,162 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
         </div>
     </div>
 
-
-    <!--TABLA ESTUDIANTES-->
-    <div class="row">
-            <div class="col-12 mt-4 col-tabla">
-                <h1 style="text-align:center;">Lista de aprendices</h1>
-                <!--Tabla admins-->
-                <table class="mt-3 table table-striped tabla-estudiante" id="tabla-estudiante" style="width: 50%;">
-                    <thead>
-                        <tr>
-                          <th scope="col">Identificación</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido</th>
-                          <th scope="col">Género</th>
-                          <th scope="col">Curso</th>
-                          <th scope="col">Teléfono</th>
-                          <th scope="col">Correo</th>
-                          <th scope="col">Fecha de Nacimiento</th>
-                          <th scope="col">Editar</th>
-                        </tr>
-                    </thead>
-                    <?php if (!empty($usersWithCourse)): ?>
-                    <tbody>
-                    <!-- Mostrar Usuarios -->
-                    <?php foreach($usersWithCourse as $user): ?> 
-                      <tr>
-                        <td> <?php echo htmlspecialchars($user['numeroDoc']) ?></td>
-
-                        <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
-
-                        <td> <?php echo htmlspecialchars($user['apellido']) ?></td>
-
-                        <td> <?php echo htmlspecialchars($user['genero']) ?></td>
-
-                        <td>  <?php echo htmlspecialchars($user['curso_nombre']) ?> </td>
-
-                        <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
-
-                        <td> <?php echo htmlspecialchars($user['correo']) ?></td>              
-
-                        <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
-
-                        <td> 
-                            <a href="
-                                <?php 
-                                if (isset($_SESSION['acceso'])) {
-                                    echo 'index.php?pagina=editar&id='.$user['numeroDoc'];
-                                }else {
-                                    echo 'index.php?pagina=adminlogin';
-                                }
-                                ?>"><i class="bi bi-pencil-square">
-                            </a></i> 
-                        </td>
-                        
-                      </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                    <!--mostrar mensaje cuando no hay usuarios-->
-                    <?php else: ?>
-                    <p>No hay usuarios registrados</p>
-                    <?php endif; ?>
-                </table>
-                <!--Fin tabla admins-->
+    <!--Modal asignar cursos-->
+    <div class="modal fade" id="modalAsignarCursos" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Asignar cursos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form action="" method="post">
+
+                    <div class="mb-3">
+                        <span>Estudiantes</span>
+                        <select class="form-select" aria-label="Default select example" name="estudiante" id="estudiante">
+                          <option value="0" selected>Seleccione un estudiante</option>
+
+                          <?php foreach($users as $estudiante) : ?>
+                            <option value="<?php echo $estudiante['numeroDoc'] ?>">
+                                <?php
+                                echo $estudiante['nombre'];
+                                ?>
+                            </option>
+                          <?php endforeach ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <span>Cursos</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        
+                        <?php 
+                        $contador = 1;
+
+                        foreach($courses as $curso) : ?>
+                            <input type="checkbox" name="cursos[]" id="<?php echo $contador?>" autocomplete="off"
+                            value="<?php
+                            echo $curso['idcursos'];
+                            ?>">
+                            <label for="<?php echo $contador?>">
+                                <?php
+                                echo $curso['nombre']
+                                ?>
+                            </label><br>
+                            
+                            <?php $contador++; ?>
+                        <?php endforeach ?>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="btn_asignar">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL-->
+
+    <div class="row mt-4">
+            <div class="col">
+                    <div class="col-12 mt-4 col-tabla">
+                        <h1 style="text-align:center;">Lista de Estudiantes</h1>
+                        <?php if (!empty($users)): ?>
+
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAsignarCursos">Asignar cursos</button>
+
+                        <!--TABLA ESTUDIANTES-->
+                        <table class="mt-3 table table-striped tabla-estudiante" id="tabla-estudiante" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                <th scope="col">Identificación</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Género</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Fecha de Nacimiento</th>
+                                <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <!-- Mostrar Usuarios -->
+                                <?php foreach($users as $user): ?> 
+                                <tr>
+                                    <td> <?php echo htmlspecialchars($user['numeroDoc']) ?></td>
+
+                                    <td> <?php echo htmlspecialchars($user['nombre']) ?></td>
+
+                                    <td> <?php echo htmlspecialchars($user['apellido']) ?></td>
+
+                                    <td> <?php echo htmlspecialchars($user['genero']) ?></td>
+
+                                    <td> <?php echo htmlspecialchars($user['telefono']) ?></td>
+
+                                    <td> <?php echo htmlspecialchars($user['correo']) ?></td>              
+
+                                    <td> <?php echo htmlspecialchars($user['fecha_nac']) ?></td>
+
+                                    <td> 
+                                        <a class="btn btn-primary icon_action" href="
+                                            <?php 
+                                            if (isset($_SESSION['acceso'])) {
+                                                echo 'index.php?pagina=editar&id='.$user['numeroDoc'];
+                                            }else {
+                                                echo 'index.php?pagina=adminlogin';
+                                            }
+                                            ?>">
+                                            <i class="bi bi-pencil-square"></i>    
+                                        </a>
+
+                                        <a class="btn btn-secondary icon_action" rel="<?php echo isset($user['numeroDoc']) ? $user['numeroDoc'] : '' ?>">
+
+                                            <i class="bi bi-three-dots"></i>
+                                                
+                                        </a>
+                                        
+
+                                    </td>
+                                    
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <!--Fin tabla admins-->
+                    </div>
+            </div>
+            
     </div>
 
     <div class="row">
-      <div class="col-12">
-          <form action="index.php?pagina=home&action=reporteAprendices" method="post">
-                <button type="submit" class="btn btn-primary boton mt-3">Descargar reporte</button>
-          </form>
-      </div>
+                <div class="col">
+                        <form action="index.php?pagina=home&action=reporteAprendices" method="post">
+                            <button type="submit" class="btn btn-primary boton mt-3">Descargar reporte</button>
+                        </form>
+                </div>
     </div>
+
+    <!--mostrar mensaje cuando no hay usuarios-->
+    <?php else: ?>
+        <p>No hay usuarios registrados</p>
+    <?php endif; ?>
+            
     
-
-
-
+   
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    
+
 
 </body>
 

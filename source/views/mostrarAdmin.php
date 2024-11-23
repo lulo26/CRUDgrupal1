@@ -46,11 +46,11 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
                                 }else {
                                     echo 'index.php?pagina=adminlogin';
                                 }
-                                ?>" class="nav-link">Registro (usuarios)
+                                ?>" class="nav-link">Registro (Estudiantes)
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?pagina=estudiantes" class="nav-link">Usuarios registrados</a>
+                            <a href="index.php?pagina=estudiantes" class="nav-link">Estudiantes registrados</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?pagina=admins" class="nav-link active">Administradores</a>
@@ -137,9 +137,9 @@ if(isset($_SESSION['acceso']) && isset($_SESSION['user'])){
             </div>
         </div>
 
-            <form action="index.php?pagina=home&action=reporteAdmins" method="post">
-            <button type="submit" class="btn btn-primary boton mt-3">descargar reporte</button>
-            </form>
+        <form action="index.php?pagina=home&action=reporteAdmins" method="post">
+                <button type="submit" class="btn btn-primary boton mt-3">Descargar reporte</button>
+        </form>
 
         
     </div>

@@ -11,7 +11,7 @@ Class AprendicesController{
     }
 
     public function listUsers(){
-        $usersWithCourse = $this->aprendicesModel->GetUsersWithCourse();
+        $users = $this->aprendicesModel->GetUsers();
         $courses = $this->aprendicesModel->GetCourses();
         include './source/views/mostrarAprendiz.php';
     }
@@ -26,6 +26,32 @@ Class AprendicesController{
         include './source/views/crearAprendiz.php';
     }
 
+    public function AsignarCursos() {
+        if (isset($_POST['btn_asignar'])) {
+            $estudiante = intval($_POST['estudiante']);
+
+            if (isset($_POST['cursos']) && !empty($_POST['cursos'])) {
+                $cursos = $_POST['cursos'];
+            }
+            
+            if ($estudiante>0 && isset($cursos)) {
+                foreach ($cursos as $curso) {
+                    $insert  = $this->aprendicesModel->CreateCourses($estudiante,$curso);
+                }
+
+                $_SESSION['mensaje']="";
+                
+            } else {
+                session_start();
+                $_SESSION['mensaje']="Faltan datos";
+            }
+            
+            
+            
+        }
+        
+    }
+
     public function manageForm(){
         if(isset($_POST['action'])) {
             if($_POST['action'] == 'agregar'){
@@ -33,8 +59,7 @@ Class AprendicesController{
                 $nombre = htmlspecialchars(trim(($_POST['nombre'])));
                 $apellido = htmlspecialchars(trim($_POST['apellido']));
                 $genero =htmlspecialchars($_POST['genero']);
-                $curso = $_POST['curso'];
-                $fecha_nac = htmlspecialchars($_POST['fecha_nac']);
+                $fecha_nac = htmlspecialchars(trim($_POST['fecha_nac']));
                 $telefono = htmlspecialchars(trim($_POST['telefono']));
                 $correo = filter_var(trim($_POST['correo'],FILTER_SANITIZE_EMAIL));
 
@@ -48,18 +73,10 @@ Class AprendicesController{
             
                     return $validState;
                 }
-                $count_post = 0;
-                $array_validate = array();
-
-                foreach ($curso as $item) {
-                    if (isset($item) && !empty(intval($item)) && $item>0) {
-                        $count_post++;
-                    }
-                }
 
                 $arrayCampos = ["nombre","apellido","genero","fecha_nac","telefono","correo"];
 
-                if (check_post($arrayCampos) && $count_post>0) {
+                if (check_post($arrayCampos)) {
 
                     $sql = [
                         "correo" => $this->aprendicesModel->GetEmailUser($correo),
@@ -80,10 +97,6 @@ Class AprendicesController{
                         $insert = $this->aprendicesModel->CreateUser($numeroDoc, $nombre, $apellido, $genero, $fecha_nac, $telefono, $correo);
 
                         if ($insert) {
-                            foreach ($_POST['curso']  as $item) {
-                                $this->aprendicesModel->CreateCourses($numeroDoc,$item);
-                            }
-
                             header('Location: index.php?pagina=estudiantes');
                             exit();
 
@@ -102,7 +115,6 @@ Class AprendicesController{
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $genero = $_POST['genero'];
-                $curso = $_POST['curso'];
                 $fecha_nac = $_POST['fecha_nac'];
                 $telefono = $_POST['telefono'];
                 $correo = $_POST['correo'];

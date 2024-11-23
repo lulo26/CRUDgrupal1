@@ -58,7 +58,7 @@ class MYSQL{
                 return $this->conn->affected_rows; // for non-queries 
             }
         } catch (Exception $e){
-            die("excepción capturada: " . $e->getMessage());
+            die("Excepción capturada: " . $e->getMessage());
         }
     }
 
